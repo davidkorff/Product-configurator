@@ -1,0 +1,274 @@
+USE CASES:
+ - BSN
+  - Merchant creates own config. wants to push us orders with generated artwork
+ - Printify
+  - Merchant creates own config. wants to push us orders with generated artwork
+ - Printful
+  - Merchant creates own config. wants to push us orders with generated artwork
+ - Zazzle
+  - Merchant creates own config. wants to push us orders with generated artwork
+ - Rush Order
+  - Merchant has no configurator. Indifferent to handling payment. does not want to push order. Only wants to push traffic
+ - Salesforce
+  - simple product creation. nascent config, push orders with variable data fields
+ - Gift Links
+  - role configurator
+ - Society 6
+  - launch our products on their website. use our configurator to generate artwork. push us orders with associate artwork.
+  - purchase multiple personalized items, perfectly packaged and sent to multiple locations
+  - place orders and route to either PCNA or Leeds depending on order criteria
+ - Warehousing AAS
+  - stocking a customer's product and charging them for warehousing, customization and fullfillment.
+ - prebuilt eCommerce
+  - allow for the creation of 2 layer products and to push theose products to multiple eCommerce. when orders are placed through those channels, have the orders route to Spoke
+ - microsite
+  - creation of a microsite with minimal spoke branding and minimal merchant whitelabeling to allow our customers to sell our products to their audience.
+ - employee retention
+  - develop ability to push orders for fulfillment an order with certain products, certain designs
+ - bulk gift uploads
+  - send many products to many individuals. sometimes perfectly packaged
+ - single item order push with variable data
+  - push an order on a product with a specific design and an input for the variable field.
+ - Perfect Packaging
+  - packing a box with merchant design, branding, fill and insert.
+
+
+Order Intake
+ - BSN
+ - Printify
+ - Zazzle
+ - Printful
+
+Artwork Generation
+  - Society6
+    - Perfectly Packaged
+  - Salesforce
+    - Giftlinks
+    - Perfectly Packaged
+
+Prebuilt ECommerce integration
+  - Rush Order
+  - Doug Fregolle
+
+
+
+
+
+1. Order intake.
+  - What is an Order
+    An order everything that is being purchased in a ssingle instance by the customer.
+    An order can consist of multiple packages
+  - What is a package?
+    - a Package is a single instance of items, going to a single Address.
+      - Type: (perfect, generic, bulk)
+      - box: {design: SettingsID + Layer2LevelAreaID}
+      -  card insert:
+        - size
+        - design
+      - Address
+      - carrier
+  - What is an Item?
+    - An Item is a SKU.
+      - The SKU links back to an item number and multiple subsections
+      - each subsection has deco areas.
+      - the deco areas are linked a deco method
+      - each deco area can have certain objects for personalization.
+      - an item will be reference by SKU, and by passing in configurator Settings so that artwork can be generated
+
+
+
+
+
+
+order
+  - Package
+    - Type: (perfect, generic, bulk)
+    - setup: {Packing: tissue paper}
+    - box: {design: SettingsID + Layer2LevelAreaID}
+    - insert: size, content
+    - Address
+    - carrier
+
+
+Single Use Link Campaign
+ - settings: {
+     Max Value: INT,
+     Max Uses: INT,
+     Expiration: date
+     Webhook (for internal auth) Response
+     redirect URL
+     Products:{
+       SettingsID1: Layer2LevelArea1,
+       SettingsID2: Layer2LevelArea2,
+       SettingsID3: Layer2LevelArea3,
+       SettingsID4: Layer2LevelArea4,
+     }
+     CSS.cdn
+   }
+
+single use Links
+ - custom URL
+  - authentication engine
+  - checks:
+   - past max value?
+   - past total uses?
+   - past expiration?
+  - order details forwarded to CRM
+
+
+Purchase:{
+  type:
+   if Physical Good {
+    pricing engine --> check for specialty pricing, promos, etc
+    invoice is created to purchaser on behalf of product owner
+   }
+   if WAAS {
+    pricing engine --> check agreed pricing
+    invoice is created to purchaser on behalf of SPOKE
+  }
+  invoice is added to account balance
+}
+
+WAAS
+ - Merchant ID
+ - Item number
+ - pricing engine
+ - invoicing engine
+ - Exposed: {
+    Bool: BOOL
+    Merchants:[merchantID1, MerchantID2]
+ }
+
+create a physical product
+- identify sections
+ - give those sections attributes
+ - give sections deco info
+  - deco area
+  - deco method
+  - deco machines
+  - template
+- info
+ - product type
+ - weight
+ - dimensions
+ - shape
+ - category
+ - pricing (engine - object)
+ - inventory (object)
+- Exposure
+ - MerchantID
+ - shiptoLocations
+ - fullfillment Centers
+- Configurator SettingsID
+- Owner
+
+Fulfillment Center
+ - Fulfillment Center ID
+ - Address
+
+Machines:
+ - machine Model
+  - model number
+  - Description
+  - type
+  - Json
+ - Machine specific info
+  - fullfillmentcenterID
+  - machinemodelID
+  - serialNumber
+  - IP Address
+  - location
+
+inventory
+ - Item Number
+  - SKU
+   - FulfillmentCenterID
+    - count
+ - Owner
+
+Merchant
+ - MerchantID
+ - TaxID
+ - Credit line
+ - banking info
+
+Configurator
+ - SettingsID
+   - item number
+    - SKU
+     - deco area
+      - Field Name
+      - FieldID
+      - deco type
+      - Pricing Engine
+      - template
+       - Dimensions:{
+          Height: INT,
+          Width: INT,
+          Excluded area?
+       }
+       - image RIP
+       - Layer2LevelArea
+          - Price for end user
+         - parentSettingsID
+         -DecoAreaJSON:{
+            Each Area and option to activate. If activated, further steps below are exposed.
+            Pricing addon for enduser
+         }
+         - Editable: BOOL
+         - field
+          - name
+          - ID
+          - type
+           - text
+            - PlaceHolderText
+            - value
+            - Fonts JSON:{
+                font1:TRUE,
+                font2:FALSE
+            }
+            - Colors JSON:{
+                color1:FALSE,
+                color2:TRUE
+            }
+            - SettingsJSON:{
+                Use Placeholder if blank Value: BOOL,
+                X Offset: INT,
+                Y Offset: INT,
+                Width: INT,
+                Height: INT,
+                Editable:{
+                  bool: BOOL
+                  Movable:BOOL,
+                  SizeChange:BOOL,
+                  Select Font: BOOL,
+                  Select Color: BOOL,
+                  Max X Offset: INT,
+                  Min X Offset: INT,
+                  Max Y Offset: INT,
+                  Min Y Offset: INT
+                }
+            }
+            - Image
+             - PlaceHolderImage
+             - valueURL
+             - SettingsJSON:{
+                Use Placeholder if blank Value: BOOL,
+                X Offset: INT,
+                Y Offset: INT,
+                Width: INT,
+                Height: INT,
+                Editable:{
+                  bool: BOOL
+                  Movable:BOOL
+                  SizeChange:BOOL
+                  Max X Offset: INT,
+                  Min X Offset: INT,
+                  Max Y Offset: INT,
+                  Min Y Offset: INT
+                }
+            }
+
+
+Artwork
+ - gives artwork from a configurator with particular SettingsID and Layer2LevelAreaID

@@ -1,0 +1,62 @@
+{
+	"Product":{
+	"SettingID":1,
+	"ItemNumber":"1625-85",
+	"SKUs":[
+		{"SKU":{
+			"SKUID":1,
+			"SKUNum":"1625-85BK",
+			"Attributes":{
+				"Images":[
+					{"Image":{
+						"ID":1,
+						"ImageURL":"https://assets.pcna.com/t_560,f_auto,q_auto/Images/1625-85BK_B_FR_9456.png"
+					}}
+				],
+				"Color":"Black",
+				"Size":"22oz"
+			}
+    }}
+	],
+	"Subsections":[
+		{"Subsection":{
+			"ImageID":3,
+			"SubsectionName": "Front",
+			"MaxTemplate":{
+				"Height":250,
+				"Width":212
+			},
+			"DecoAreas":[
+				{"DecoArea":{
+					"DecoAreaID":1,
+					"DecoType": "Digital Ink",
+					"FieldName": "FrontDigitalInk",
+					"Template":{
+            "File": "https:imagetemplate.jpg",
+						"Dimensions":{
+							"DecoAreaHeight":101,
+							"DecoAreaWidth":212,
+							"DecoAreaXOffset":0,
+							"DecoAreaYOffset":75
+						},
+						"PersonalizedObjects":[
+							{"PersonalizedObject":{
+								"PersonalizedObjectID":1,
+								"AreaType":"IMG",
+								"Text":"David Korff",
+								"IMG": "https://bit.ly/3wYMVg4",
+								"ObjectSpecs":{
+									"ObjectHeight":10,
+									"ObjectWidth":10,
+									"ObjectXOffset":20,
+									"ObjectyOffset":10
+								}
+							}}
+						]
+						}
+					}}
+			]
+		}}
+	]
+	}
+}

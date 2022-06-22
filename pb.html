@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div role="dialog" id="monogramOverlay" class="overlayWidget " tabindex="-1" style="margin-top: 10px; top: 0px;">
+<a href="#" class="overlayCloseButton overlayCloseX" title="Close"><span class="offscreen">close</span></a>
+
+
+<script type="text/html" id="persTextTemplate"> <label class="charLimitLabel">
+<input type="text" size="[%= size %]" maxlength="[%= maxLength %]" name="[%= property %]" class="persText" value="[%= value %]" autocomplete="off" autocorrect="off" autocapitalize="off"/>
+<span class="sizeText">([%= sizeText %])</span>
+<input type="hidden" class="textEntered" value="false"/>
+<input type="hidden" class="mdetails" value="[%= textCode %]"/>
+</label>
+</script><script type="text/html" id="monoPersFontTemplate_Style-1"> <div class="monoPersFont ">
+<h2 class="monoPersFontTitle selection-header">
+<span class="count"></span>Select Font: <span class="monoPersFontName monopz-selected"></span>
+</h2>
+<div class="scroller-container horizontal monoPersFontSel visual-attributes fontstyle-imgs " data-scroller="{pageSize:0}" data-startItem="0" data-itemsPerPage="0" data-totalItems="0">
+<div class="disabled btn-prev control"><a href="#">Scroll to Previous Item</a></div>
+<div class="scroller">
+<ul class="panel" style="">
+<li>
+<a href="#" class="thumbnailWidget" data-monoThumb="{'value':'100'}">
+<img src='https://assets.pkimgs.com/pkimgs/rk/images/dp/wcm/202219/0003/img82.gif' height="40" width="70" class="" data-styleid='100'/>
+</a>
+</li>
+<li>
+<a href="#" class="thumbnailWidget" data-monoThumb="{'value':'17'}">
+<img src='https://assets.pkimgs.com/pkimgs/rk/images/dp/wcm/202219/0023/img62.gif' height="40" width="70" class="" data-styleid='17'/>
+</a>
+</li>
+<li>
+<a href="#" class="thumbnailWidget" data-monoThumb="{'value':'29'}">
+<img src='https://assets.pkimgs.com/pkimgs/rk/images/dp/wcm/202214/0010/img1.gif' height="40" width="70" class="" data-styleid='29'/>
+</a>
+</li>
+<li>
+<a href="#" class="thumbnailWidget" data-monoThumb="{'value':'38'}">
+<img src='https://assets.pkimgs.com/pkimgs/rk/images/dp/wcm/202219/0004/img51.gif' height="40" width="70" class="" data-styleid='38'/>
+</a>
+</li>
+<li>
+<a href="#" class="thumbnailWidget" data-monoThumb="{'value':'G89'}">
+<img src='https://assets.pkimgs.com/pkimgs/rk/images/dp/wcm/202208/0044/img9.gif' height="40" width="70" class="" data-styleid='G89'/>
+</a>
+</li>
+<li>
+<a href="#" class="thumbnailWidget" data-monoThumb="{'value':'P35'}">
+<img src='https://assets.pkimgs.com/pkimgs/rk/images/dp/wcm/202202/0029/img29.gif' height="40" width="70" class="" data-styleid='P35'/>
+</a>
+</li>
+<li>
+<a href="#" class="thumbnailWidget" data-monoThumb="{'value':'P37'}">
+<img src='https://assets.pkimgs.com/pkimgs/rk/images/dp/wcm/202202/0024/img23.gif' height="40" width="70" class="" data-styleid='P37'/>
+</a>
+</li>
+</ul>
+</div>
+<div class="disabled btn-next control "><a href="#">Scroll to Next Item</a></div>
+</div>
+<div class="font-selection-detail">
+<div class="monoPersFontDetails">
+<img class="font-unavailable" src="https://assets.pkimgs.com/pkimgs/rk/images/i/202222/0036/images/common/mono_font_no_img.gif" alt="No Image Available"/>
+<span class="monoPersFontDescription">
+</span>
+<a class="monoPersViewAllLetters popup" title="Link opens in a new window" href="/popup/shoppingcart/monogram-styles/monogram_100.html" rel="{'name' : 'monogramPopup', 'dim': {'width': 700, 'height': 540}}">View all letters </a>
+</div>
+</div>
+</div>
+</script><script type="text/html" id="monoPersTextTemplate_TextCode-1"> <h2 class="selection-header"><span class="count"></span>Enter Text</h2>
+<div class="specific-error hidden"></div>
+<div class="monogram-entry-set selectable-content">
+<label class="charLimitLabel" data-mdetails="9" data-textEntered="false" data-fieldIdx="1">
+<input type="text" maxlength="9" name="text1" class="persText " value="" autocomplete="off" autocorrect="off" autocapitalize="off"/>
+<span class="sizeText">(up to 9 characters)</span>
+<input type="hidden" class="textEntered" value="false"/>
+<input type="hidden" class="mdetails" value="9"/>
+</label>
+</div>
+<div class="monoPersInstructionalText selectable-content">
+<div class="monoPersTextHelp"><a href="/pages/fragments/monogramHelp.html" id="" class="overlayTrigger " aria-label="" data-overlay="{destroyOnHide:true}" data-overlaydata="{}" >Read more information</a> on formatting your text</div>
+</div>
+</script><script type="text/html" id="monoPersColorTemplate_Color-1"> <div class="monoPersColor ">
+<h2 class="monoPersColorTitle selection-header"><span class="count"></span>Select Color: <span class="monoPersColorName monopz-selected"></span></h2>
+<div class="scroller-container horizontal monoPersColorSel visual-attributes color-imgs " data-scroller="{pageSize:0}" data-startItem="0" data-itemsPerPage="0" data-totalItems="0">
+<div class="disabled btn-prev control"><a href="#">Scroll to Previous Item</a></div>
+<div class="scroller">
+<ul class="panel" style="">
+<li>
+<a href="#" class="thumbnailWidget" data-monoThumb="{'value':'DN'}">
+<img src='https://assets.pkimgs.com/pkimgs/rk/images/dp/wcm/202219/0023/img79.jpg' height="40" width="50" class="" data-styleid='DN'/>
+</a>
+</li>
+<li>
+<a href="#" class="thumbnailWidget" data-monoThumb="{'value':'EK'}">
+<img src='https://assets.pkimgs.com/pkimgs/rk/images/dp/wcm/202221/0004/img85.jpg' height="40" width="50" class="" data-styleid='EK'/>
+</a>
+</li>
+<li>
+<a href="#" class="thumbnailWidget" data-monoThumb="{'value':'HP'}">
+<img src='https://assets.pkimgs.com/pkimgs/rk/images/dp/wcm/202219/0023/img6.jpg' height="40" width="50" class="" data-styleid='HP'/>
+</a>
+</li>
+<li>
+<a href="#" class="thumbnailWidget" data-monoThumb="{'value':'LL'}">
+<img src='https://assets.pkimgs.com/pkimgs/rk/images/dp/wcm/202219/0004/img58.jpg' height="40" width="50" class="" data-styleid='LL'/>
+</a>
+</li>
+<li>
+<a href="#" class="thumbnailWidget" data-monoThumb="{'value':'MD'}">
+<img src='https://assets.pkimgs.com/pkimgs/rk/images/dp/wcm/202218/0004/img13.jpg' height="40" width="50" class="" data-styleid='MD'/>
+</a>
+</li>
+<li>
+<a href="#" class="thumbnailWidget" data-monoThumb="{'value':'ME'}">
+<img src='https://assets.pkimgs.com/pkimgs/rk/images/dp/wcm/202204/0066/img28.jpg' height="40" width="50" class="" data-styleid='ME'/>
+</a>
+</li>
+<li>
+<a href="#" class="thumbnailWidget" data-monoThumb="{'value':'NW'}">
+<img src='https://assets.pkimgs.com/pkimgs/rk/images/dp/wcm/202219/0004/img1.jpg' height="40" width="50" class="" data-styleid='NW'/>
+</a>
+</li>
+<li>
+<a href="#" class="thumbnailWidget" data-monoThumb="{'value':'PZ'}">
+<img src='https://assets.pkimgs.com/pkimgs/rk/images/dp/wcm/202150/0027/img9.jpg' height="40" width="50" class="" data-styleid='PZ'/>
+</a>
+</li>
+<li>
+<a href="#" class="thumbnailWidget" data-monoThumb="{'value':'QO'}">
+<img src='https://assets.pkimgs.com/pkimgs/rk/images/dp/wcm/202150/0027/img14.jpg' height="40" width="50" class="" data-styleid='QO'/>
+</a>
+</li>
+<li>
+<a href="#" class="thumbnailWidget" data-monoThumb="{'value':'WW'}">
+<img src='https://assets.pkimgs.com/pkimgs/rk/images/dp/wcm/202219/0004/img61.jpg' height="40" width="50" class="" data-styleid='WW'/>
+</a>
+</li>
+<li>
+<a href="#" class="thumbnailWidget" data-monoThumb="{'value':'XA'}">
+<img src='https://assets.pkimgs.com/pkimgs/rk/images/dp/wcm/202219/0003/img31.jpg' height="40" width="50" class="" data-styleid='XA'/>
+</a>
+</li>
+</ul>
+</div>
+<div class="disabled btn-next control "><a href="#">Scroll to Next Item</a></div>
+</div>
+</div>
+</script><script type="text/html" id="overlayTemplateInFragment_msdOverlay"> <div role="dialog" id="msdOverlay" class="overlayWidget modal confirmationOverlay" tabindex="-1" >
+<a href="#" id="overlayCloseButton" class="overlayCloseButton overlayCloseX" title="Close"><span class="offscreen">close</span></a>
+<div class="overlayTitleBar">
+<h3 class="primary-modal-header overlayTitle overlay-title">Allow Extra Time For Shipping</h3>
+</div>
+<div class="overlayBody"> <div class="msd-basket section">
+<div class="message">Extra time is needed to fulfill this item.</div>
+<div class="lineItemContainer clearfix">[%= lineItemContent %]</div>
+</div>
+<div class="section transient-hilite transientHilite" data-transient-hilite="{'hilite':'#FFFACD', 'inStart': '#FFFFFF', 'outEnd': '#FFFFFF'}">
+<div class="message monopz-delay-message">[%= shipDelayAlertMessage %]</div>
+<div class="message">Would you like to continue?</div>
+<div class="button-container">
+<a class="btn btn-primary btn-continue" id="btn-continue-monopz-delay" href="javascript:;" title="continue">Continue</a>
+<a class="btn btn-alternate btn-skip-personalization" style="[%= hideSkipMonoPZ %]" id="btn-skip-personalization" href="javascript:;" title="Skip personalization">Skip personalization</a>
+<a class="btn btn-alternate btn-cancel cancelOverlay" style="[%= hideCancelMonoPZ %]" id="btn-cancel" href="javascript:;" title="Cancel">Cancel</a>
+</div>
+</div>
+</div>
+</div>
+</script><script type="text/html" id="monoPZItemTemplate"> <div class="line-item">
+<div class="imageContainer">
+[% if(productImageSrc) { %]
+<img src="[%= productImageSrc %]" class="square" alt="[%= productImageAlt %]"/>
+[% } %]
+</div>
+<div class="copy">
+<div class="info sansserif">
+<h4 class="dynamic-text" id="title">[%= title %]</h4>
+<div id="sku">[%= sku %]</div>
+<div id="quantity">[%= quantity %]</div>
+<div id="price">[%= price %]</div>
+</div>
+</div>
+</div>
+</script><script type="text/html" id="overlayTemplateInFragment_shipDelayConfirmation"> <div role="dialog" id="shipDelayConfirmation" class="overlayWidget " tabindex="-1" >
+<a href="#" id="overlayCloseButton" class="overlayCloseButton overlayCloseX" title="Close"><span class="offscreen">close</span></a>
+<h3 class="primary-modal-header ship-delay-product-header">Review Your Made-to-Order Item</h3>
+<ul class="ship-delay-confirmation-product-group">
+[% for (var i = 0; i < products.length; i++) { %]
+<li class="ship-delay-confirmation-product">
+<h2 class="product-title">
+[%= products[i].shortName %]
+</h2>
+<div class="ship-delay-confirmation-product-alert-message">
+[%= products[i].shipDelayAlert %]
+</div>
+<img src="https://assets.pkimgs.com/pkimgs/rk/images/dp//[%= products[i].image %]m.jpg" class="ship-delay-confirmation-product-thumb" alt="Reference photo for [%= products[i].shortName %]"/>
+[% if( products[i].swatch ) { %]
+<img src="https://assets.pkimgs.com/pkimgs/rk/images/dp//[%= products[i].swatch %]l.jpg" class="ship-delay-confirmation-product-swatch-thumb" alt="Reference swatch for [%= products[i].shortName %]"/>
+[% } %]
+</li>
+[% } %]
+</ul>
+<div class="ship-delay-confirmation-accept-terms">
+<p class="ship-delay-confirmation-call-to-action">Select &quot;Accept Terms&quot; to acknowledge this policy and to continue to add this item to your cart. If you select Decline, this item will not be added.</p>
+<div class="button-group">
+<button class="btn btn-primary js-accept-shipping-button">Accept &amp; Add to Cart</button>
+<button class="btn btn-secondary js-deny-shipping-button">Decline</button>
+</div>
+</div>
+</div>
+</script><script type="text/html" id="overlayTemplateInFragment_racOverlay"> <div role="dialog" id="racOverlay" class="overlayWidget modal " tabindex="-1" >
+<a href="#" id="overlayCloseButton" class="overlayCloseButton overlayCloseX" title="Close"><span class="offscreen">close</span></a>
+<div class="overlayBody"> <div id="pk-rac-mbox" class="pk-rac-mbox"></div>
+<div class="rac-basket section">
+<h3 class="hide-international overlayTitle">Added to your cart</h3>
+<h3 class="hide show-international">Items Added To Your International Order</h3>
+<div class="lineItemContainer clearfix">[%= lineItemContent %]</div>
+[% if(smartBundlingContent) { %]
+<div class="smart-bundling-container" id="smart-bundling-container">[%= smartBundlingContent %]</div>
+[% } %]
+</div>
+<div class="rac-totals-block clearfix">
+<span class="totals-block-static-text summary">Total Items: <span class="totals-block-dynamic-text">[%= skucount %]</span></span>
+<span class="totals-block-static-text cart-total">Subtotal: <span class="totals-block-dynamic-text">[%= totalprice %]</span></span>
+<div class="disclaimers-block">
+<span class="totals-block-disclaimer hide-international">(Subtotal does not include shipping and processing, gift wrap, discounts or tax)</span>
+<span class="totals-block-disclaimer hide show-international">Subtotal does not include shipping and processing, duty or tax.</span>
+</div>
+<div class="totals-block-buttons">
+<div id="btn-continue">
+<a class="button" id="anchor-btn-continue" href="javascript:;" title="Continue Shopping">Continue Shopping</a>
+</div>
+<div id="btn-checkout">
+<a id="anchor-btn-checkout" href="https://www.potterybarnkids.com/checkout/normal.html" class="button" title="Checkout">Checkout</a>
+</div>
+<p class="input-aside">You&rsquo;ll still have a chance to review your order.</p>
+</div>
+</div>
+<div class="recommendation-container desktopRac desktop-rac">
+<div id="atc_page-desktop_rac" data-tracking="?cm_src=WsiRac"></div>
+</div>
+</div>
+</div>
+</script><script type="text/html" id="richCartItemTemplate"> <div class="line-item">
+<div class="imageContainer">
+[% if(productImageSrc) { %]
+<img src="[%= productImageSrc %]" class="square" alt="[%= productImageAlt %]"/>
+[% } %]
+</div>
+<div class="copy">
+<div class="info sansserif">
+<h4 class="dynamic-text" id="title">[%= title %]</h4>
+[%= promoMessage %]
+<div id="sku">Item: <span class="dynamic-text">[%= sku %]</span></div>
+<div id="quantity">[%= quantity %]</div>
+<div id="price">[%= price %]</div>
+[% if (svcTo != "") { %]
+<div id="svcTo">[%= svcTo %]</div>
+[% } %]
+[% if (svcFrom != "") { %]
+<div id="svcFrom">[%= svcFrom %]</div>
+[% } %]
+[% if (svcMessageLine1 != "") { %]
+<div id="svcMessageLine1">[%= svcMessageLine1 %]</div>
+[% } %]
+[% if (svcMessageLine2 != "") { %]
+<div id="svcMessageLine2">[%= svcMessageLine2 %]</div>
+[% } %]
+[% if (backorder != "") { %]
+<div class="alert hide" id="backorder" data-layer-component="{'name': 'Backorder Date Viewed', 'data': {'sku': '[%= sku %]', 'groupId': '[%= WSI.groupId ? WSI.groupId : '' %]', 'backorder': '[%= backorder %]'}}">This item is available to ship on approximately [%= backorder %]</div>
+[% } %]
+[% if (monogramLineItems != "") { %]
+<div id="monogram">
+<ul id="monogramAttributes" class="monogramAttributes clearfix">
+[%= monogramLineItems %]
+</ul>
+</div>
+[% } %]
+</div>
+</div>
+</div>
+</script><script type="text/html" id="monoPZLinesTemplate"> [% if (hasMonoPZ) { %]
+<li>This item will be personalized and cannot be canceled or returned.</li>
+[% if (styleLine) { %]
+<li>Style: <span class="dynamic-text">[%= styleLine %]</span></li>
+[% } %]
+[% if (colorLine) { %]
+<li>Color: <span class="dynamic-text">[%= colorLine %]</span></li>
+[% } %]
+[% if (textArray && textArray.length) { %]
+[% if (textArray.length > 1) { %]
+<li>
+<dl class="dynamic-text">
+<dt>Personalization:</dt>
+[% for (var ndx = 0; ndx < textArray.length; ndx++) { %]
+<dd>[%= textArray[ndx] %]</dd>
+[% } %]
+</dl>
+</li>
+[% } else { %]
+<li>Personalization: [%= textArray[0] %]</li>
+[% } %]
+[% } %]
+[% if (shippingDelayMsg && shippingDelayMsg.length) { %]
+<li class="mono-shipping-delay">[%= shippingDelayMsg %]</li>
+[% } %]
+[% } else { %]
+<li>This item can be personalized with a name or initial</li>
+[% } %]
+</script><script type="text/html" id="richCartSmartBundlingItemTemplate"> <div class="content-scroller-item">
+<div class="smart-bundling-item [%= isFirstElement %]">
+<div class="smart-bundling-copy">[%= copy %]</div>
+<div class="smart-bundling-content">
+<div class="smart-bundling-image-container">
+<a class="smart-bundling-link" href="https://www.potterybarnkids.com/products/[%= groupId %]/?sku=[%= sku %]&cm_src=smartbundlerac">
+[% if(productImageSrc) { %]
+<img src="[%= productImageSrc %]" alt="[%= productImageAlt %]"/>
+[% } %]
+</a>
+</div>
+<div class="subset-pricing info">
+<a class="smart-bundling-link" href="https://www.potterybarnkids.com/products/[%= groupId %]/?sku=[%= sku %]&cm_src=smartbundlerac">
+<h4 class="dynamic-text" id="title">[%= title %]</h4>
+</a>
+<div class="product-price">
+[% if(isSaleOrSpecial) { %]
+[%= price %]
+[% } %]
+[% if(!isSaleOrSpecial) { %]
+<span>Price:</span> [%= price %]
+[% } %]
+</div>
+[%if(storeName !== "") { %]
+<div class="bopis-store-info">
+<span>Also Available in [%= storeName %] Store</span>
+</div>
+[% } %]
+<div class="smart-bundling-add-to-cart" id="smart-bundling-atc-[%= sku %]">
+<div class="subset-selection">
+<div class="subset-qty quantity-selector">
+<input class="qty" id="rac_qty_[%= sku %]" aria-label="Quantity" type="number" pattern="[0-9]*" min="0" max="99" maxlength="2" placeholder="QTY" value="[%= itemQuantity %]" autocomplete="none" data-addtocart="{&quot;sku&quot;:&quot;[%= sku %]&quot;,&quot;groupId&quot;:&quot;[%= groupId %]&quot;,&quot;catalog&quot;:&quot;[%= catalog %]&quot;,&quot;intlIneligibility&quot;:false[%if (pickupLocationCode !== undefined) { %],&quot;pickupLocationCode&quot;:&quot;[%= pickupLocationCode %]&quot;[% } %][%if (pickupServiceLevel !== undefined) { %],&quot;pickupServiceLevel&quot;:&quot;[%= pickupServiceLevel %]&quot;[% } %]}"/>
+</div>
+</div>
+<div>
+<button aria-label="Add to Cart" class="btn_addtobasket btn-add-to-cart btn-pip" sku="[%= sku %]">
+<span>Add to Cart</span>
+</button>
+</div>
+</div>
+<div class="smart-bundling-error">
+<div class="general-error hidden"></div>
+<div class="specific-error hidden"></div>
+</div>
+</div>
+</div>
+[% if(memberCopy) { %]
+<div class="utility-member-copy">[%= memberCopy %]</div>
+[% } %]
+</div>
+</div>
+</script>
+
+
+
+<div class="titleBar">
+<h1>Add Personalization</h1>
+<span class="helpArea"><strong>Need Help?</strong> 1.800.993.4923</span>
+</div>
+<div class="mono-mess">
+<p>Personalized items cannot be canceled or returned except when due to defect.</p>
+<p>You will be charged an additional
+<span class="currency currencyUSD ">
+<span class="currency-symbol">$</span><span class="price-amount">15</span></span>
+per item. Some exclusions apply.</p>
+</div>
+<div id="overlay-content">
+<div id="product-selection">
+<h2><span class="count">1. </span>Select Product</h2>
+<div class="specific-error hidden"></div>
+<div class="product-subset active" subsetindex="0">
+<a href="#" class="subset-image">
+<img src="https://assets.pkimgs.com/pkimgs/rk/images/dp/wcm/202203/0134/img29r.jpg" alt="My First Gray Twill with White Piping Anywhere Chair®" height="71" width="80" class="">
+<span class="subset-name">Gray with White Piping Anywhere Chair</span>
+</a>
+<div class="subset-attributes">
+</div>
+</div>
+</div>
+<div class="monoSelectThisSku" data-monosku="442590">
+<div class="monoSelectThisProduct" id="_id1">
+<div class="monogram-select-and-preview">
+<div class="monogram-selection-preview">
+<div class="monoPersFontPlaceHolder"> <div class="monoPersFont ">
+<h2 class="monoPersFontTitle selection-header">
+<span class="count">2. </span>Select Font: <span class="monoPersFontName monopz-selected">Garamond (Style 17)</span>
+</h2>
+<div class="scroller-container horizontal monoPersFontSel visual-attributes fontstyle-imgs " data-scroller="{pageSize:0}" data-startitem="0" data-itemsperpage="0" data-totalitems="0" data-sized="true" id="_scroller2">
+<div class="disabled btn-prev control"><a href="#">Scroll to Previous Item</a></div>
+<div class="scroller" id="_ev_9">
+<ul class="panel" style="" id="_ev_10">
+<li>
+<a href="#" class="thumbnailWidget" data-monothumb="{'value':'100'}" id="_id0" style="display: block;">
+<img src="https://assets.pkimgs.com/pkimgs/rk/images/dp/wcm/202219/0003/img82.gif" height="40" width="70" class="" data-styleid="100" alt="Copperplate (Style 100)">
+</a>
+</li>
+<li>
+<a href="#" class="thumbnailWidget active" data-monothumb="{'value':'17'}" style="display: block;" id="_id5">
+<img src="https://assets.pkimgs.com/pkimgs/rk/images/dp/wcm/202219/0023/img62.gif" height="40" width="70" class="" data-styleid="17" alt="Garamond (Style 17)">
+</a>
+</li>
+<li>
+<a href="#" class="thumbnailWidget" data-monothumb="{'value':'29'}" style="display: block;">
+<img src="https://assets.pkimgs.com/pkimgs/rk/images/dp/wcm/202214/0010/img1.gif" height="40" width="70" class="" data-styleid="29" alt="Typewriter (Style 29)">
+</a>
+</li>
+<li>
+<a href="#" class="thumbnailWidget" data-monothumb="{'value':'38'}" style="display: block;">
+<img src="https://assets.pkimgs.com/pkimgs/rk/images/dp/wcm/202219/0004/img51.gif" height="40" width="70" class="" data-styleid="38" alt="Ballantines Script (Style 38)">
+</a>
+</li>
+<li>
+<a href="#" class="thumbnailWidget" data-monothumb="{'value':'G89'}" style="display: block;">
+<img src="https://assets.pkimgs.com/pkimgs/rk/images/dp/wcm/202208/0044/img9.gif" height="40" width="70" class="" data-styleid="G89" alt="Century Gothic Proper (G89)">
+</a>
+</li>
+<li>
+<a href="#" class="thumbnailWidget" data-monothumb="{'value':'P35'}" style="display: block;">
+<img src="https://assets.pkimgs.com/pkimgs/rk/images/dp/wcm/202202/0029/img29.gif" height="40" width="70" class="" data-styleid="P35" alt="Deco for Days (Style P35)">
+</a>
+</li>
+<li>
+<a href="#" class="thumbnailWidget" data-monothumb="{'value':'P37'}" style="display: block;">
+<img src="https://assets.pkimgs.com/pkimgs/rk/images/dp/wcm/202202/0024/img23.gif" height="40" width="70" class="" data-styleid="P37" alt="Ikaros (Style P37)">
+</a>
+</li>
+</ul>
+</div>
+<div class="btn-next control"><a href="#">Scroll to Next Item</a></div>
+</div>
+<div class="font-selection-detail">
+<div class="monoPersFontDetails">
+<img class="font-unavailable" src="https://assets.pkimgs.com/pkimgs/rk/images/dp/wcm/202219/0023/img62.gif" alt="Garamond (Style 17)">
+<span class="monoPersFontDescription">A beautiful serif font with an informal feel; displays a name or word with only the first letter in uppercase.
+<br><br>
+<b>Instructions:</b> Choose any combination of alphabet letters A–Z, numbers 0–9, a commas and/or periods.
+
+</span>
+<a class="monoPersViewAllLetters popup" title="Link opens in a new window" href="https://www.potterybarnkids.com/popup/shoppingcart/monogram-styles/monogram_17.html" rel="{'name' : 'monogramPopup', 'dim': {'width': 700, 'height': 540}}">View all letters </a>
+</div>
+</div>
+</div>
+</div>
+<div class="monoPersText" id="_id3"> <h2 class="selection-header"><span class="count">3. </span>Enter Text</h2>
+<div class="specific-error hidden error-message-fade-out"></div>
+<div class="monogram-entry-set selectable-content">
+<label class="charLimitLabel" data-mdetails="9" data-textentered="false" data-fieldidx="1" style="display: block;">
+<input type="text" maxlength="9" name="text1" class="persText titlecase" value="" autocomplete="off" autocorrect="off" autocapitalize="off" size="10" id="_id4">
+<span class="sizeText">up to 9 characters</span>
+<input type="hidden" class="textEntered" value="true">
+<input type="hidden" class="mdetails" value="PPP">
+</label>
+</div>
+<div class="monoPersInstructionalText selectable-content">
+<div class="monoPersTextHelp"><a href="/pages/fragments/monogramHelp.html" id="" class="overlayTrigger " aria-label="" data-overlay="{destroyOnHide:true}" data-overlaydata="{}">Read more information</a> on formatting your text</div>
+</div>
+</div>
+<div class="monoPersColorPlaceHolder"> <div class="monoPersColor ">
+<h2 class="monoPersColorTitle selection-header"><span class="count">4. </span>Select Color: <span class="monoPersColorName monopz-selected">Light Blue (DN)</span></h2>
+<div class="scroller-container horizontal monoPersColorSel visual-attributes color-imgs " data-scroller="{pageSize:0}" data-startitem="0" data-itemsperpage="0" data-totalitems="0" data-sized="true" id="_scroller1">
+<div class="disabled btn-prev control"><a href="#">Scroll to Previous Item</a></div>
+<div class="scroller" id="_ev_7">
+<ul class="panel" style="" id="_ev_8">
+<li>
+<a href="#" class="thumbnailWidget active" data-monothumb="{'value':'DN'}" id="_id2">
+<img src="https://assets.pkimgs.com/pkimgs/rk/images/dp/wcm/202219/0023/img79.jpg" height="40" width="50" class="" data-styleid="DN" alt="Light Blue (DN)">
+</a>
+</li>
+<li>
+<a href="#" class="thumbnailWidget" data-monothumb="{'value':'EK'}">
+<img src="https://assets.pkimgs.com/pkimgs/rk/images/dp/wcm/202221/0004/img85.jpg" height="40" width="50" class="" data-styleid="EK" alt="Green (EK)">
+</a>
+</li>
+<li>
+<a href="#" class="thumbnailWidget" data-monothumb="{'value':'HP'}">
+<img src="https://assets.pkimgs.com/pkimgs/rk/images/dp/wcm/202219/0023/img6.jpg" height="40" width="50" class="" data-styleid="HP" alt="Navy (HP)">
+</a>
+</li>
+<li>
+<a href="#" class="thumbnailWidget" data-monothumb="{'value':'LL'}">
+<img src="https://assets.pkimgs.com/pkimgs/rk/images/dp/wcm/202219/0004/img58.jpg" height="40" width="50" class="" data-styleid="LL" alt="Lavender (LL)">
+</a>
+</li>
+<li>
+<a href="#" class="thumbnailWidget" data-monothumb="{'value':'MD'}">
+<img src="https://assets.pkimgs.com/pkimgs/rk/images/dp/wcm/202218/0004/img13.jpg" height="40" width="50" class="" data-styleid="MD" alt="Very Red (MD)">
+</a>
+</li>
+<li>
+<a href="#" class="thumbnailWidget" data-monothumb="{'value':'ME'}">
+<img src="https://assets.pkimgs.com/pkimgs/rk/images/dp/wcm/202204/0066/img28.jpg" height="40" width="50" class="" data-styleid="ME" alt="Horseradish (ME) ">
+</a>
+</li>
+<li>
+<a href="#" class="thumbnailWidget" data-monothumb="{'value':'NW'}">
+<img src="https://assets.pkimgs.com/pkimgs/rk/images/dp/wcm/202219/0004/img1.jpg" height="40" width="50" class="" data-styleid="NW" alt="Herbal Blue (NW)">
+</a>
+</li>
+<li>
+<a href="#" class="thumbnailWidget" data-monothumb="{'value':'PZ'}">
+<img src="https://assets.pkimgs.com/pkimgs/rk/images/dp/wcm/202150/0027/img9.jpg" height="40" width="50" class="" data-styleid="PZ" alt="Azalea Pink (PZ)">
+</a>
+</li>
+<li>
+<a href="#" class="thumbnailWidget" data-monothumb="{'value':'QO'}">
+<img src="https://assets.pkimgs.com/pkimgs/rk/images/dp/wcm/202150/0027/img14.jpg" height="40" width="50" class="" data-styleid="QO" alt="Pink Sherbet (QO)">
+</a>
+</li>
+<li>
+<a href="#" class="thumbnailWidget" data-monothumb="{'value':'WW'}">
+<img src="https://assets.pkimgs.com/pkimgs/rk/images/dp/wcm/202219/0004/img61.jpg" height="40" width="50" class="" data-styleid="WW" alt="White (WW)">
+</a>
+</li>
+<li>
+<a href="#" class="thumbnailWidget" data-monothumb="{'value':'XA'}">
+<img src="https://assets.pkimgs.com/pkimgs/rk/images/dp/wcm/202219/0003/img31.jpg" height="40" width="50" class="" data-styleid="XA" alt="Aged Charcoal (XA)">
+</a>
+</li>
+</ul>
+</div>
+<div class="btn-next control"><a href="#">Scroll to Next Item</a></div>
+</div>
+</div>
+</div>
+<div class="preview-image previewImage" src="http://s7d4.scene7.com/ir/render/PotteryBarnKidsRender/442590?wid=600&amp;obj=FLOW/MNGRM&amp;decal&amp;sharp=0&amp;src=is{PotteryBarnKids/mono?fmt=png-alpha&amp;$fx=20&amp;$csize38=900,900&amp;$csize100=1000,1000&amp;$csize198=800,800&amp;$csize29=900,900&amp;$csize17=800,800&amp;$csizeD21=1200,1200&amp;$font=GaramondStitch_17&amp;newparam=ss&amp;$Lpos=D&amp;$Cpos=A&amp;$Rpos=V&amp;$R=110&amp;$G=148&amp;$B=186&amp;$text=David&amp;op_noise=0&amp;op_blur=1}&amp;rotate=0&amp;sharp=1&amp;qlt=90,1&amp;pos=0,0&amp;res=65">
+<img alt="" title="" src="http://s7d4.scene7.com/ir/render/PotteryBarnKidsRender/442590?wid=600&amp;obj=FLOW/MNGRM&amp;decal&amp;sharp=0&amp;src=is{PotteryBarnKids/mono?fmt=png-alpha&amp;$fx=20&amp;$csize38=900,900&amp;$csize100=1000,1000&amp;$csize198=800,800&amp;$csize29=900,900&amp;$csize17=800,800&amp;$csizeD21=1200,1200&amp;$font=GaramondStitch_17&amp;newparam=ss&amp;$Lpos=D&amp;$Cpos=A&amp;$Rpos=V&amp;$R=110&amp;$G=148&amp;$B=186&amp;$text=David&amp;op_noise=0&amp;op_blur=1}&amp;rotate=0&amp;sharp=1&amp;qlt=90,1&amp;pos=0,0&amp;res=65" class="preview-image previewImage" style="outline: red dashed 1px;">
+</div>
+<div class="add-item">
+<div class="specific-error hidden"></div>
+<div class="subset-pricing">
+<span class="product-price">
+<div class="price-state price-standard"><span class="currency currencyUSD">
+<span class="currency-symbol">$</span><span class="currency-amount">125</span></span></div>
+
+<span class="price-state price-surcharge">
+
+
+<span class="label">Delivery Surcharge:</span>
+<span class="surcharge-state surcharge-standard">
+<span class="currency currencyUSD">
+<span class="currency-symbol">$</span><span class="currency-amount">10</span></span>
+</span>
+
+
+</span>
+</span>
+<div class="subset-pricing-surcharge-charged">
+Personalization:
+<span class="monoPersAddBoxCharge "><span class="monoPersAddBoxPrice">
+<span class="currency currencyUSD ">
+<span class="currency-symbol">$</span><span class="price-amount">15</span></span>
+</span> (per item)</span>
+<span class="monoPersAddBoxFree hidden">Free Personalization</span>
+</div>
+</div>
+<div class="subset-qty">
+<abbr title="Quantity">QTY</abbr>
+<input class="qty" type="number" min="0" max="99" maxlength="2" size="6" data-addtocart="{&quot;sku&quot;:&quot;442590&quot;,&quot;catalog&quot;:&quot;10&quot;}">
+</div>
+<div class="add-cart-container addToCartContainer">
+<div class="urgency-msg urgency-msg-pip-simple visually-hidden-with-layout" data-item-id="gray-harper-my-first-anywhere-chair">
+<span class="urgency-msg-text">&nbsp;</span>
+</div>
+<div class="addcart-options ">
+<fieldset id="add_to_basket" class="add-to-basket">
+<button aria-label="Add to Cart" class="btn btn_addtobasket btn_addtobasket_add" data-layer-event="{ item : 'ADD TO CART'}" data-relate="{&quot;subsetSectionType&quot;:&quot;&quot;}"><span> Add to Cart
+</span></button>
+</fieldset>
+<fieldset id="btn_registry_update" class="add-to-registry update-registry hidden">
+<button class="btn btn_registry btn_addtoregistry btn_registry_update" type="submit" data-layer-event="{ item : 'ADD TO REGISTRY'}" data-relate="{&quot;subsetSectionType&quot;:&quot;&quot;}"><span>Update Registry</span></button>
+</fieldset>
+<fieldset id="btn_registry_add" class="add-to-registry">
+<button aria-label="Add to Registry" class="btn btn_registry btn_addtoregistry btn_registry_add" type="submit" data-layer-event="{ item : 'ADD TO REGISTRY'}" data-relate="{&quot;subsetSectionType&quot;:&quot;&quot;}"><span> Add to Registry
+</span></button>
+</fieldset>
+</div>
+</div>
+</div>
+<div class="delay-monopz-message transient-hilite hide">
+<h3>Allow Extra Time for Shipping</h3>
+<p>If monogrammed, please allow approximately 6-8 business days for delivery. Would you like to continue?</p>
+<a class="button btn-continue" id="btn-continue-monopz-overlay" href="javascript:;" title="continue">Continue</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+  </body>
+</html>
