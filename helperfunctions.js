@@ -10,16 +10,28 @@ function buttonActiveSetting(buttonDiv, e){
   }
 }
 
-function unHideChildDivs(editorSubsectionsDiv,editorSubsectionsButtonsDiv, e){
+function unHideChildDivs(htmlDataElement, e){
+  // takes in the whole dive to
   // debugger
-  let subSectionElementsArray = document.querySelectorAll('[data-subsectionid]')
+  // let subSectionElementsArray = document.querySelector("[name='editor']").querySelectorAll(`[${htmlDataElement}]`)
+  let subSectionElementsArray = document.querySelectorAll(`[${htmlDataElement}]`)
   for (let i = 0; i < subSectionElementsArray.length; i++) {
     // debugger
-    if(subSectionElementsArray[i].getAttribute("data-subsectionid") == e.target.getAttribute("data-subsectionid")) {
+    if(subSectionElementsArray[i].getAttribute(htmlDataElement) == e.target.getAttribute(htmlDataElement)) {
       subSectionElementsArray[i].classList.remove("d-none")
     }
     else if (subSectionElementsArray[i].type != 'button'){
       subSectionElementsArray[i].classList.add("d-none")
     }
   }
+}
+
+
+function updateSVGPersonalizedObject(input, htmlDataElement, e){
+  let targetID = e.target.parentElement.getAttribute(htmlDataElement)
+//returns an array even though its only 1 element. guess we can have 2 related feilds?
+  let subSectionElement = document.querySelector(`svg [${htmlDataElement}='${targetID}']`)
+
+  subSectionElement.innerHTML= input
+
 }

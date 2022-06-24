@@ -6,6 +6,7 @@ function doTheEditor(jsonObject){
   var editorDiv = document.createElement("div")
 
   editorDiv.setAttribute("class", "col-md-4 col-12 rounded-top")
+  editorDiv.setAttribute("name", "editor")
   document.getElementById("fullContainer").appendChild(editorDiv)
 
   // create editor title
@@ -52,7 +53,7 @@ function subsectionClicked(jsonSubsection, editorSubsectionsDiv, editorSubsectio
   console.log("helloe")
   buttonActiveSetting(editorSubsectionsButtonsDiv, e)
   // debugger
-  unHideChildDivs(editorSubsectionsDiv,editorSubsectionsButtonsDiv, e)
+  unHideChildDivs("data-subsectionid", e)
 }
 
 
@@ -84,6 +85,7 @@ function createDecoAreaEditor(jsonSubsection, editorSubsectionsDiv){
     let decoButton = document.createElement("button")
     decoButton.setAttribute("class", "btn btn-outline-primary")
     decoButton.setAttribute("type", "button")
+    decoButton.setAttribute("data-decoareaid", jsonDecoArea.DecoAreaID)
     decoButton.innerHTML = decoAreaName
     editorDecoAreaButtonsDiv.appendChild(decoButton)
     decoButton.addEventListener("click", function(e) {
@@ -91,21 +93,80 @@ function createDecoAreaEditor(jsonSubsection, editorSubsectionsDiv){
     })
     // debugger
     let personalizedObjectArray = jsonDecoArea.Template.PersonalizedObjects
+
+    //create the personalized area div
+    let editorPersonalizedObjectDiv = document.createElement("div")
+    editorPersonalizedObjectDiv.setAttribute("name", "PersonalizedObjectEditor")
+    editorPersonalizedObjectDiv.setAttribute("data-decoareaid", jsonDecoArea.DecoAreaID)
+    editorPersonalizedObjectDiv.setAttribute("class", "mt-1 d-none")
+    editorDecoAreaDiv.appendChild(editorPersonalizedObjectDiv)
+
     for (let x = 0; x < personalizedObjectArray.length; x++) {
-      createPersonalizedObject(personalizedObjectArray[x].PersonalizedObject, editorDecoAreaDiv)
+      createPersonalizedObject(jsonDecoArea, personalizedObjectArray[x].PersonalizedObject, editorPersonalizedObjectDiv)
     }
   }
 }
 
-function createPersonalizedObject(personalizedObject, editorDecoAreaDiv){
-  // gotta mak these
-  // console.log("i makey dah clicky")
-  // console.log(`personalized object`)
-  // console.log(personalizedObject)
-  // console.log("editorDecoAreaDiv")
-  // console.log(editorDecoAreaDiv)
+function createPersonalizedObject(jsonDecoArea, personalizedObject, editorPersonalizedObjectDiv){
+
+  // create the personalized element div
+  let editorPersonalizedElementsDiv = document.createElement("div")
+  editorPersonalizedElementsDiv.setAttribute("class", "input-group mb-3")
+  editorPersonalizedElementsDiv.setAttribute("data-personalizedobjectid", personalizedObject.PersonalizedObjectID)
+  editorPersonalizedObjectDiv.setAttribute("data-decoareaid", jsonDecoArea.DecoAreaID)
+  editorPersonalizedObjectDiv.appendChild(editorPersonalizedElementsDiv)
+
+  //create the type of element Label div
+  let editorPersonalizedElementLabelDiv = document.createElement("div")
+  editorPersonalizedElementLabelDiv.setAttribute("class", "input-group-prepend")
+  editorPersonalizedElementsDiv.appendChild(editorPersonalizedElementLabelDiv)
+
+  //create the type of element Label div
+  let editorPersonalizedElementLabel = document.createElement("span")
+  editorPersonalizedElementLabel.setAttribute("class", "input-group-text")
+
+
+  if (personalizedObject.AreaType == "IMG"){
+    editorPersonalizedElementLabel.innerHTML = "Image URL"
+  }
+  else{
+    editorPersonalizedElementLabel.innerHTML = "Text"
+  }
+
+
+  editorPersonalizedElementLabelDiv.appendChild(editorPersonalizedElementLabel)
+
+  //create the input field
+  let editorPersonalizedElementInput = document.createElement("input")
+  editorPersonalizedElementInput.setAttribute("class", "form-control")
+  editorPersonalizedElementInput.setAttribute("type", "text")
+
+  if (personalizedObject.AreaType == "IMG"){
+    editorPersonalizedElementInput.value = `${personalizedObject.IMG}`
+  }
+  else{
+    editorPersonalizedElementInput.value = `${personalizedObject.Text}`
+  }
+
+  editorPersonalizedElementInput.addEventListener("keyup", function(e) {
+      editorValueChanged(personalizedObject,editorPersonalizedElementInput, e)
+  })
+
+  editorPersonalizedElementsDiv.appendChild(editorPersonalizedElementInput)
+  // debugger
+
+
+}
+
+function editorValueChanged(personalizedObject, editorPersonalizedElementInput, e){
+  //update the jsonObject
+  personalizedObject.Text = e.target.value
+
+  updateSVGPersonalizedObject(personalizedObject.Text, 'data-personalizedobjectid', e)
+  // debugger
 }
 
 function decoAreaClicked(jsonDecoArea, editorSubsectionsDiv, editorDecoAreaButtonsDiv, e){
+  unHideChildDivs('data-decoareaid', e)
   buttonActiveSetting(editorDecoAreaButtonsDiv, e)
 }

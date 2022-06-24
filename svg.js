@@ -69,8 +69,10 @@ function createDecoArea(svgElement, decoArea){
   decoAreaSVG.setAttribute("width", decoArea.Template.Dimensions.DecoAreaWidth)
   decoAreaSVG.setAttribute("x", decoArea.Template.Dimensions.DecoAreaXOffset)
   decoAreaSVG.setAttribute("y", decoArea.Template.Dimensions.DecoAreaYOffset)
+  decoAreaSVG.classList.add("d-none")
   decoAreaSVG.setAttribute("style","stroke:black;stroke-width:1;fill-opacity:0.0")
   decoAreaSVG.setAttribute("id", `DecoAreaID${decoArea.DecoAreaID}`)
+  decoAreaSVG.setAttribute("data-decoareaid", decoArea.DecoAreaID)
   decoAreaSVG.addEventListener("mousemove", mouseState)
 
   svgElement.appendChild(decoAreaSVG)
@@ -107,6 +109,7 @@ function createDecoArea(svgElement, decoArea){
 
 function createPersonalizedObjects(decoAreaGroup, personalizedObject){
   // make another group for each personalized object
+  // debugger
   personalizedObjectGroup = document.createElementNS("http://www.w3.org/2000/svg", 'g');
   personalizedObjectGroup.setAttribute("height", personalizedObject.ObjectSpecs.ObjectHeight)
   personalizedObjectGroup.setAttribute("width", personalizedObject.ObjectSpecs.ObjectWidth)
@@ -138,6 +141,7 @@ function createPersonalizedObjects(decoAreaGroup, personalizedObject){
     svgPersonalizedeElement.setAttribute("x", (personalizedObject.ObjectSpecs.ObjectXOffset+parseFloat(decoAreaGroup.getAttribute("x"))))
     svgPersonalizedeElement.setAttribute("y", (personalizedObject.ObjectSpecs.ObjectYOffset+parseFloat(decoAreaGroup.getAttribute("y"))))
     svgPersonalizedeElement.setAttribute("id", `PersonalizedObjectID${personalizedObject.PersonalizedObjectID}`)
+    svgPersonalizedeElement.setAttribute("data-personalizedobjectid",personalizedObject.PersonalizedObjectID)
     // svgPersonalizedeElement.addEventListener("mousedown", function(){ mousedown(svgPersonalizedeElement) })
     // svgPersonalizedeElement.addEventListener("mouseup", function(){ mouseup() })
     personalizedObjectGroup.appendChild(svgPersonalizedeElement)
@@ -150,11 +154,14 @@ function createPersonalizedObjects(decoAreaGroup, personalizedObject){
     svgPersonalizedeElement.setAttributeNS(null, "font-size", personalizedObject.FontSize);
     svgPersonalizedeElement.setAttributeNS(null, "font-family", personalizedObject.Font);
     svgPersonalizedeElement.setAttribute("id", `PersonalizedObjectID${personalizedObject.PersonalizedObjectID}`)
+    svgPersonalizedeElement.setAttribute("data-personalizedobjectid",personalizedObject.PersonalizedObjectID)
 
     // debugger
     svgPersonalizedeElement.innerHTML = personalizedObject.Text
     personalizedObjectGroup.appendChild(svgPersonalizedeElement)
   }
+  //gives it the parent svg data-decoareaid
+  svgPersonalizedeElement.setAttribute("data-decoareaid", decoAreaGroup.parentElement.getAttribute('data-decoareaid'))
   svgPersonalizedeElement.addEventListener("mousedown", function(e) {
       mouseState1(personalizedObject, e)
   })

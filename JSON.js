@@ -159,8 +159,8 @@ jsonObject1 = {
 			"ImageID":3,
 			"SubsectionName": "Bottom",
 			"MaxTemplate":{
-				"Height":30,
-				"Width":30
+				"Height":60,
+				"Width":60
 			},
 			"DecoAreas":[
         {"DecoArea":{
@@ -170,8 +170,8 @@ jsonObject1 = {
 					"Template":{
             "File": "https:imagetemplate.jpg",
 						"Dimensions":{
-							"DecoAreaHeight":30,
-							"DecoAreaWidth":30,
+							"DecoAreaHeight":60,
+							"DecoAreaWidth":60,
 							"DecoAreaXOffset":0,
 							"DecoAreaYOffset":0
 						},
@@ -190,8 +190,8 @@ jsonObject1 = {
 								"ObjectSpecs":{
 									"ObjectHeight":30,
 									"ObjectWidth":30,
-									"ObjectXOffset":0,
-									"ObjectYOffset":0
+									"ObjectXOffset":15,
+									"ObjectYOffset":15
 								}
 							}}
 						]
