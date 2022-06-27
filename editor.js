@@ -160,9 +160,14 @@ function createPersonalizedObject(jsonDecoArea, personalizedObject, editorPerson
 
 function editorValueChanged(personalizedObject, editorPersonalizedElementInput, e){
   //update the jsonObject
-  personalizedObject.Text = e.target.value
+  if(personalizedObject.AreaType =='Text'){
+    personalizedObject.Text = e.target.value
+  }
+  else if(personalizedObject.AreaType =='IMG'){
+    personalizedObject.IMG = e.target.value
+  }
 
-  updateSVGPersonalizedObject(personalizedObject.Text, 'data-personalizedobjectid', e)
+  updateSVGPersonalizedObject(e.target.value, 'data-personalizedobjectid', e)
   // debugger
 }
 

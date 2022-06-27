@@ -28,10 +28,17 @@ function unHideChildDivs(htmlDataElement, e){
 
 
 function updateSVGPersonalizedObject(input, htmlDataElement, e){
+  // debugger
   let targetID = e.target.parentElement.getAttribute(htmlDataElement)
 //returns an array even though its only 1 element. guess we can have 2 related feilds?
   let subSectionElement = document.querySelector(`svg [${htmlDataElement}='${targetID}']`)
 
-  subSectionElement.innerHTML= input
+  if(subSectionElement.tagName == 'image'){
+    // debugger
+    subSectionElement.setAttribute("href", input)
+  }
+  else if(subSectionElement.tagName == 'text'){
+    subSectionElement.innerHTML= input
+  }
 
 }
