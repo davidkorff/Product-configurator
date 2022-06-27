@@ -73,7 +73,7 @@ jsonObject1 = {
 								"Text":"David Korff5",
 								"Font":"Arial",
 								"FontSize":10,
-								"IMG": "file:///C:/Users/dkorff/Downloads/5.svg",
+								"IMG": "https://printify.com/wp-content/uploads/2021/03/swagrabbit_logo.png",
 								"ObjectSpecs":{
 									"ObjectHeight":50,
 									"ObjectWidth":60,
