@@ -11,6 +11,7 @@ selectedObject = null
 debugBool = false
 
 
+
 function dothesvg(jsonObject){
 
   subSectionsArray = jsonObject.Product.Subsections
@@ -24,16 +25,44 @@ function dothesvg(jsonObject){
 
 function createDIV(subsection){
   // debugger
+  var subsectionDiv = document.createElement("div")
+  subsectionDiv.setAttribute("id", subsection.SubsectionID )
+  subsectionDiv.setAttribute("data-subsectionid", subsection.SubsectionID )
+  subsectionDiv.setAttribute("name", `${subsection.SubsectionName}-BackgroundDiv` )
+  subsectionDiv.setAttribute("class", "col-md-8 col-12 zoom-pxtomm d-none" )
+  subsectionDiv.setAttribute("height", subsection.MaxTemplate.Height*1.2)
+  subsectionDiv.setAttribute("width", subsection.MaxTemplate.Width*1.2)
+  subsectionDiv.setAttribute("style", "background-image: url('https://assets.pcna.com/t_560,f_auto,q_auto/Images/1625-85BK_B_FR_2629.png'); background-size: contain; background-repeat: no-repeat;")
+  document.getElementById("fullContainer").appendChild(subsectionDiv)
+
+  // var img = document.createElement("img");
+  // img.src = "https://assets.pcna.com/t_560,f_auto,q_auto/Images/1625-85BK_B_FR_2629.png";
+  // img.setAttribute("class", "col-md-8 col-12 d-none position-absolute" )
+  // img.setAttribute("style", "z-index:-1")
+  // img.setAttribute("id", subsection.SubsectionID )
+  // img.setAttribute("data-subsectionid", subsection.SubsectionID )
+  // img.setAttribute("name", subsection.SubsectionName )
+  // img.setAttribute("height", subsection.MaxTemplate.Height)
+  // img.setAttribute("width", subsection.MaxTemplate.Width)
+  // subsectionDiv.appendChild(img)
+
+
   var div = document.createElement("div")
   div.setAttribute("id", subsection.SubsectionID )
   div.setAttribute("data-subsectionid", subsection.SubsectionID )
   div.setAttribute("name", subsection.SubsectionName )
-  div.setAttribute("class", "col-md-8 col-12 zoom-pxtomm d-none" )
-  div.setAttribute("style", 'backgroundImage:https://assets.pcna.com/t_560,f_auto,q_auto/Images/1625-85BK_B_FR_2629.png')
+  // div.setAttribute("class", "col-md-8 col-12 zoom-pxtomm d-none" )
+  div.setAttribute("class", "col-md-8 col-12 d-none" )
 
-  document.getElementById("fullContainer").appendChild(div)
+  div.setAttribute("style", "padding-top: 50px")
+
+  subsectionDiv.appendChild(div)
+
+
 
   createCanvas(div, subsection)
+
+
 }
 
 function createCanvas(div, subsection){
@@ -48,11 +77,14 @@ function createCanvas(div, subsection){
   div.appendChild(svgElement)
 
   // add a border
-  svgBorder = document.createElementNS("http://www.w3.org/2000/svg", 'rect');
-  svgBorder.setAttribute("height", subsection.MaxTemplate.Height)
-  svgBorder.setAttribute("width", subsection.MaxTemplate.Width)
-  svgBorder.setAttribute("style","stroke:black;stroke-width:5;fill-opacity:0.0")
-  svgElement.appendChild(svgBorder)
+  if(false){
+    svgBorder = document.createElementNS("http://www.w3.org/2000/svg", 'rect');
+    svgBorder.setAttribute("height", subsection.MaxTemplate.Height)
+    svgBorder.setAttribute("width", subsection.MaxTemplate.Width)
+    svgBorder.setAttribute("style","stroke:black;stroke-width:5;fill-opacity:0.0")
+    svgElement.appendChild(svgBorder)
+  }
+
 
   // creating decoarea
   decoAreaArray = subsection.DecoAreas
@@ -90,14 +122,17 @@ function createDecoArea(svgElement, decoArea){
   decoAreaSVG.appendChild(decoAreaGroup)
 
   // create a decoarea border
-  decoAreaBorder = document.createElementNS("http://www.w3.org/2000/svg", 'rect');
-  decoAreaBorder.setAttribute("class", "border")
-  decoAreaBorder.setAttribute("height", decoArea.Template.Dimensions.DecoAreaHeight)
-  decoAreaBorder.setAttribute("width", decoArea.Template.Dimensions.DecoAreaWidth)
-  decoAreaBorder.setAttribute("x", 0)
-  decoAreaBorder.setAttribute("y", 0)
-  decoAreaBorder.setAttribute("style","stroke:black;stroke-width:1;fill-opacity:0.0")
-  decoAreaGroup.appendChild(decoAreaBorder)
+  if(true){
+    decoAreaBorder = document.createElementNS("http://www.w3.org/2000/svg", 'rect');
+    decoAreaBorder.setAttribute("class", "border")
+    decoAreaBorder.setAttribute("height", decoArea.Template.Dimensions.DecoAreaHeight)
+    decoAreaBorder.setAttribute("width", decoArea.Template.Dimensions.DecoAreaWidth)
+    decoAreaBorder.setAttribute("x", 0)
+    decoAreaBorder.setAttribute("y", 0)
+    decoAreaBorder.setAttribute("style","stroke:black;stroke-width:1;fill-opacity:0.0")
+    decoAreaGroup.appendChild(decoAreaBorder)
+  }
+
 
 
   // creating personalized areas
@@ -123,14 +158,17 @@ function createPersonalizedObjects(decoAreaGroup, personalizedObject){
 
 
   // create a personalized object border
-  personalizedObjectBorder = document.createElementNS("http://www.w3.org/2000/svg", 'rect');
-  personalizedObjectBorder.setAttribute("height", personalizedObject.ObjectSpecs.ObjectHeight)
-  personalizedObjectBorder.setAttribute("width", personalizedObject.ObjectSpecs.ObjectWidth)
-  personalizedObjectBorder.setAttribute("x", (personalizedObject.ObjectSpecs.ObjectXOffset+parseFloat(decoAreaGroup.getAttribute("x"))))
-  personalizedObjectBorder.setAttribute("y", (personalizedObject.ObjectSpecs.ObjectYOffset+parseFloat(decoAreaGroup.getAttribute("y"))))
-  personalizedObjectBorder.setAttribute("id", personalizedObject.PersonalizedObjectID)
-  personalizedObjectBorder.setAttribute("style","stroke:black;stroke-width:1;fill-opacity:0.0")
-  personalizedObjectGroup.appendChild(personalizedObjectBorder)
+  if(false){
+    personalizedObjectBorder = document.createElementNS("http://www.w3.org/2000/svg", 'rect');
+    personalizedObjectBorder.setAttribute("height", personalizedObject.ObjectSpecs.ObjectHeight)
+    personalizedObjectBorder.setAttribute("width", personalizedObject.ObjectSpecs.ObjectWidth)
+    personalizedObjectBorder.setAttribute("x", (personalizedObject.ObjectSpecs.ObjectXOffset+parseFloat(decoAreaGroup.getAttribute("x"))))
+    personalizedObjectBorder.setAttribute("y", (personalizedObject.ObjectSpecs.ObjectYOffset+parseFloat(decoAreaGroup.getAttribute("y"))))
+    personalizedObjectBorder.setAttribute("id", personalizedObject.PersonalizedObjectID)
+    personalizedObjectBorder.setAttribute("style","stroke:black;stroke-width:1;fill-opacity:0.0")
+    personalizedObjectGroup.appendChild(personalizedObjectBorder)
+  }
+
 
   // add the personalization
   if(personalizedObject.AreaType == "IMG"){
