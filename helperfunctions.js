@@ -46,3 +46,11 @@ function updateSVGPersonalizedObject(input, htmlDataElement, e){
   }
 
 }
+
+function selectFirst(e){
+  console.log("efwg")
+  let subsectionEditor = document.querySelector('[name="subSectionEditor"]');
+  let subsectionButton = subsectionEditor.querySelector(`button`).click()
+  let decoAreaButtons = subsectionEditor.querySelector('div.currentEdit')
+  decoAreaButtons.querySelector(`button`).click()
+}

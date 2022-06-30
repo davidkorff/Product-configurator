@@ -1,35 +1,26 @@
 pxTOmmConversion = 3.7795275591
-window.onload = dothesvg(jsonObject1)
-// window.onload = dothesvg(jsonObject2)
-
-// window.onload = dothesvg(jsonObject2)
-
-window.onresize = windowResized
-
-function windowResized(){
-  let currentBackground = document.querySelector(".currentEdit .background");
-  // debugger
-  // console.log(currentBackground.clientsHeight)
-  // console.log(currentBackground.clientWidth)
-  changeSVGZoom()
-}
-
 oldXPosition = null
 oldYPosition = null
 objectSelectedBool = false
 selectedObject = null
 debugBool = false
 
+window.onload = dothesvg(jsonObject1)
+document.addEventListener("DOMContentLoaded", selectFirst)
+window.onresize = windowResized
+
+function windowResized(){
+  let currentBackground = document.querySelector(".currentEdit .background");
+  changeSVGZoom()
+}
+
+
+
 function changeSVGZoom(){
   let currentSvg = document.querySelector(".currentEdit .subsectionSVG ");
   let currentBackground = document.querySelector(".currentEdit .background");
-  console.log(` image width ${currentBackground.clientWidth}`)
-  console.log(` svg width ${currentSvg.clientWidth}`)
-  console.log(` old zoom ${currentSvg.style.zoom}`)
   // debugger
   currentSvg.style.zoom = currentBackground.width/currentSvg.clientWidth
-  console.log(` new zoom ${currentSvg.style.zoom}`)
-
 }
 
 function dothesvg(jsonObject){
@@ -53,12 +44,7 @@ function createDIV(subsection){
   subsectionDiv.setAttribute("class", "col-md-8 col-12 background d-none" )
   subsectionDiv.setAttribute("height", subsection.MaxTemplate.Height*1.2)
   subsectionDiv.setAttribute("width", subsection.MaxTemplate.Width*1.2)
-  // subsectionDiv.setAttribute("style", "background-image: url('https://assets.pcna.com/t_560,f_auto,q_auto/Images/1625-85BK_B_FR_2629.png'); background-size: contain; background-repeat: no-repeat;")
 
-  // subsectionDiv.style.zoom = windowZoom
-
-  // subsectionDiv.addEventListener("resize",  svgResized)
-  // subsectionDiv.onresize = svgResized
 
   document.getElementById("fullContainer").appendChild(subsectionDiv)
 
