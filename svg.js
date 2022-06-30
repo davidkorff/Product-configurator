@@ -4,13 +4,33 @@ window.onload = dothesvg(jsonObject1)
 
 // window.onload = dothesvg(jsonObject2)
 
+window.onresize = windowResized
+
+function windowResized(){
+  let currentBackground = document.querySelector(".currentEdit .background");
+  // debugger
+  // console.log(currentBackground.clientsHeight)
+  // console.log(currentBackground.clientWidth)
+  changeSVGZoom()
+}
+
 oldXPosition = null
 oldYPosition = null
 objectSelectedBool = false
 selectedObject = null
 debugBool = false
 
+function changeSVGZoom(){
+  let currentSvg = document.querySelector(".currentEdit .subsectionSVG ");
+  let currentBackground = document.querySelector(".currentEdit .background");
+  console.log(` image width ${currentBackground.clientWidth}`)
+  console.log(` svg width ${currentSvg.clientWidth}`)
+  console.log(` old zoom ${currentSvg.style.zoom}`)
+  // debugger
+  currentSvg.style.zoom = currentBackground.width/currentSvg.clientWidth
+  console.log(` new zoom ${currentSvg.style.zoom}`)
 
+}
 
 function dothesvg(jsonObject){
 
@@ -24,27 +44,35 @@ function dothesvg(jsonObject){
 }
 
 function createDIV(subsection){
+  var windowZoom = pxTOmmConversion
   // debugger
   var subsectionDiv = document.createElement("div")
   subsectionDiv.setAttribute("id", subsection.SubsectionID )
   subsectionDiv.setAttribute("data-subsectionid", subsection.SubsectionID )
   subsectionDiv.setAttribute("name", `${subsection.SubsectionName}-BackgroundDiv` )
-  subsectionDiv.setAttribute("class", "col-md-8 col-12 zoom-pxtomm d-none" )
+  subsectionDiv.setAttribute("class", "col-md-8 col-12 background d-none" )
   subsectionDiv.setAttribute("height", subsection.MaxTemplate.Height*1.2)
   subsectionDiv.setAttribute("width", subsection.MaxTemplate.Width*1.2)
-  subsectionDiv.setAttribute("style", "background-image: url('https://assets.pcna.com/t_560,f_auto,q_auto/Images/1625-85BK_B_FR_2629.png'); background-size: contain; background-repeat: no-repeat;")
+  // subsectionDiv.setAttribute("style", "background-image: url('https://assets.pcna.com/t_560,f_auto,q_auto/Images/1625-85BK_B_FR_2629.png'); background-size: contain; background-repeat: no-repeat;")
+
+  // subsectionDiv.style.zoom = windowZoom
+
+  // subsectionDiv.addEventListener("resize",  svgResized)
+  // subsectionDiv.onresize = svgResized
+
   document.getElementById("fullContainer").appendChild(subsectionDiv)
 
-  // var img = document.createElement("img");
-  // img.src = "https://assets.pcna.com/t_560,f_auto,q_auto/Images/1625-85BK_B_FR_2629.png";
-  // img.setAttribute("class", "col-md-8 col-12 d-none position-absolute" )
-  // img.setAttribute("style", "z-index:-1")
-  // img.setAttribute("id", subsection.SubsectionID )
-  // img.setAttribute("data-subsectionid", subsection.SubsectionID )
-  // img.setAttribute("name", subsection.SubsectionName )
+
+  var img = document.createElement("img");
+  img.src = "https://assets.pcna.com/t_560,f_auto,q_auto/Images/1625-85BK_B_FR_2629.png";
+  img.setAttribute("class", "col-md-8 col-12 d-none position-absolute background " )
+  img.setAttribute("style", "z-index:-1")
+  img.setAttribute("id", subsection.SubsectionID )
+  img.setAttribute("data-subsectionid", subsection.SubsectionID )
+  img.setAttribute("name", subsection.SubsectionName )
   // img.setAttribute("height", subsection.MaxTemplate.Height)
-  // img.setAttribute("width", subsection.MaxTemplate.Width)
-  // subsectionDiv.appendChild(img)
+  img.setAttribute("width", subsection.MaxTemplate.Width)
+  subsectionDiv.appendChild(img)
 
 
   var div = document.createElement("div")
@@ -52,9 +80,12 @@ function createDIV(subsection){
   div.setAttribute("data-subsectionid", subsection.SubsectionID )
   div.setAttribute("name", subsection.SubsectionName )
   // div.setAttribute("class", "col-md-8 col-12 zoom-pxtomm d-none" )
-  div.setAttribute("class", "col-md-8 col-12 d-none" )
+  div.setAttribute("class", "col-md-8 col-12 d-none svgDiv" )
 
-  div.setAttribute("style", "padding-top: 50px")
+
+
+  // div.setAttribute("style", "padding-top: 50px")
+  // div
 
   subsectionDiv.appendChild(div)
 
@@ -70,10 +101,11 @@ function createCanvas(div, subsection){
   svgElement = document.createElementNS("http://www.w3.org/2000/svg", "svg");
 
   svgElement.setAttribute("id", subsection.SubsectionID )
+  svgElement.setAttribute("data-subsectionid", subsection.SubsectionID )
   svgElement.setAttribute("name", subsection.SubsectionName )
   svgElement.setAttribute("height", subsection.MaxTemplate.Height)
   svgElement.setAttribute("width", subsection.MaxTemplate.Width)
-
+  svgElement.setAttribute("class", 'subsectionSVG')
   div.appendChild(svgElement)
 
   // add a border
@@ -267,10 +299,12 @@ $('svg').on('mouseup', function mouseState(e) {
 
 function moveObject(selectedObject, xPositionMovement, yPositionMovement, decoAreaElement){
   // debugger
+  let zoomMultiplier = document.querySelector(".currentEdit .subsectionSVG ").style.zoom
+  // debugger
   validateMovement(selectedObject, xPositionMovement, yPositionMovement, decoAreaElement)
 
-  selectedObject.setAttribute("x", (parseFloat(selectedObject.getAttribute("x"))+xPositionMovement/pxTOmmConversion))
-  selectedObject.setAttribute("y", (parseFloat(selectedObject.getAttribute("y"))+yPositionMovement/pxTOmmConversion))
+  selectedObject.setAttribute("x", (parseFloat(selectedObject.getAttribute("x"))+xPositionMovement/zoomMultiplier))
+  selectedObject.setAttribute("y", (parseFloat(selectedObject.getAttribute("y"))+yPositionMovement/zoomMultiplier))
   // // debugger
   // get the subsection we're in and cycle through those DecoAreas
   // find the

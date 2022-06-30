@@ -19,11 +19,15 @@ function unHideChildDivs(htmlDataElement, e){
     // debugger
     if(subSectionElementsArray[i].getAttribute(htmlDataElement) == e.target.getAttribute(htmlDataElement)) {
       subSectionElementsArray[i].classList.remove("d-none")
+      subSectionElementsArray[i].classList.add("currentEdit")
     }
     else if (subSectionElementsArray[i].type != 'button'){
+      // debugger
       subSectionElementsArray[i].classList.add("d-none")
+      subSectionElementsArray[i].classList.remove("currentEdit")
     }
   }
+  changeSVGZoom()
 }
 
 
