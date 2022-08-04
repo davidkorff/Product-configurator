@@ -36,44 +36,38 @@ function dothesvg(jsonObject){
 
 function createDIV(subsection){
   var windowZoom = pxTOmmConversion
-  // debugger
-  var subsectionDiv = document.createElement("div")
-  subsectionDiv.setAttribute("id", subsection.SubsectionID )
-  subsectionDiv.setAttribute("data-subsectionid", subsection.SubsectionID )
-  subsectionDiv.setAttribute("name", `${subsection.SubsectionName}-BackgroundDiv` )
-  subsectionDiv.setAttribute("class", "col-md-8 col-12 background d-none" )
-  subsectionDiv.setAttribute("height", subsection.MaxTemplate.Height*1.2)
-  subsectionDiv.setAttribute("width", subsection.MaxTemplate.Width*1.2)
 
 
-  document.getElementById("fullContainer").appendChild(subsectionDiv)
+  var subsectionDiv = createPageElement("div",
+    subsection.SubsectionID,
+    `${subsection.SubsectionName}-BackgroundDiv`,
+    [{"data-subsectionid":subsection.SubsectionID},
+      {"height":subsection.MaxTemplate.Height*1.2},
+      {"width":subsection.MaxTemplate.Width*1.2}],
+    ["col-md-8", "col-12", "background", "d-none"],
+    document.getElementById("fullContainer")
+  )
+
+  var img = createPageElement("img",
+    subsection.SubsectionID,
+    subsection.SubsectionName,
+    [{"data-subsectionid":subsection.SubsectionID},
+      {"style":"z-index:-1"},
+      {"width":subsection.MaxTemplate.Width}],
+    ["col-md-8", "col-12", "d-none", "position-absolute", "background"],
+    subsectionDiv
+  )
+  img.src = "https://assets.pcna.com/t_560,f_auto,q_auto/Images/1625-85WH_B_FR_3280.png";
 
 
-  var img = document.createElement("img");
-  img.src = "https://assets.pcna.com/t_560,f_auto,q_auto/Images/1625-85BK_B_FR_2629.png";
-  img.setAttribute("class", "col-md-8 col-12 d-none position-absolute background " )
-  img.setAttribute("style", "z-index:-1")
-  img.setAttribute("id", subsection.SubsectionID )
-  img.setAttribute("data-subsectionid", subsection.SubsectionID )
-  img.setAttribute("name", subsection.SubsectionName )
-  // img.setAttribute("height", subsection.MaxTemplate.Height)
-  img.setAttribute("width", subsection.MaxTemplate.Width)
-  subsectionDiv.appendChild(img)
-
-
-  var div = document.createElement("div")
-  div.setAttribute("id", subsection.SubsectionID )
-  div.setAttribute("data-subsectionid", subsection.SubsectionID )
-  div.setAttribute("name", subsection.SubsectionName )
+  var div = createPageElement("div",subsection.SubsectionID,subsection.SubsectionName, [{"data-subsectionid":subsection.SubsectionID}],["col-md-8", "col-12", "d-none", "svgDiv"], subsectionDiv )
+  // var div = document.createElement("div")
+  // div.setAttribute("id", subsection.SubsectionID )
+  // div.setAttribute("data-subsectionid", subsection.SubsectionID )
+  // div.setAttribute("name", subsection.SubsectionName )
   // div.setAttribute("class", "col-md-8 col-12 zoom-pxtomm d-none" )
-  div.setAttribute("class", "col-md-8 col-12 d-none svgDiv" )
-
-
-
-  // div.setAttribute("style", "padding-top: 50px")
-  // div
-
-  subsectionDiv.appendChild(div)
+  // div.setAttribute("class", "col-md-8 col-12 d-none svgDiv" )
+  // subsectionDiv.appendChild(div)
 
 
 

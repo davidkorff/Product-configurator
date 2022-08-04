@@ -48,9 +48,35 @@ function updateSVGPersonalizedObject(input, htmlDataElement, e){
 }
 
 function selectFirst(e){
-  console.log("efwg")
   let subsectionEditor = document.querySelector('[name="subSectionEditor"]');
   let subsectionButton = subsectionEditor.querySelector(`button`).click()
   let decoAreaButtons = subsectionEditor.querySelector('div.currentEdit')
   decoAreaButtons.querySelector(`button`).click()
 }
+
+
+function createPageElement(elementType, elementID, elementName, customAttributeArray, elementClasses, parentElement){
+  if (elementType == "svg" || elementType == "g" || elementType == "rect" || elementType == "image"|| elementType == "text"){
+    var newElement = document.createElementNS("http://www.w3.org/2000/svg", elementType);
+  }
+  else{
+    var newElement = document.createElement(elementType)
+  }
+  newElement.setAttribute("id", elementID)
+  newElement.setAttribute("name", elementName )
+
+  for (var i = 0; i < customAttributeArray.length; i++) {
+    let attribute = Object.keys(customAttributeArray[i])
+    newElement.setAttribute(attribute, customAttributeArray[i][attribute] )
+  }
+
+  for (var i = 0; i < elementClasses.length; i++) {
+    newElement.classList.add(elementClasses[i])
+  }
+
+  parentElement.appendChild(newElement)
+
+  return newElement
+}
+
+// document.getElementById('pnlOrderLineContent').querySelector('input').value

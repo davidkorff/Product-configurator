@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"> </script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="index.css">
+
+    <!-- <script type="text/javascript" src='JSON.js'></script> -->
+
+  </head>
+  <body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <div class="container-fluid">
+      <div class="row" id="fullContainer">
+
+        </div>
+      </div>
+    </div>
+    <!-- <div class="row" style="background-image: url('https://assets.pcna.com/t_560,f_auto,q_auto/Images/1625-85BK_B_FR_2629.png'); height: 400px; width: 400px;" >
+
+      </div> -->
+
+    <!-- <script type="text/javascript" src='index.js'></script> -->
+    <script type="text/javascript">
+      function buttonActiveSetting(buttonDiv, e){
+        let buttons = buttonDiv.childNodes
+        for (let i = 0; i < buttons.length; i++) {
+          if (buttons[i] == e.target) {
+            buttons[i].classList.add("active")
+          }
+          else{
+            buttons[i].classList.remove("active")
+          }
+        }
+      }
+
+      function unHideChildDivs(htmlDataElement, e){
+        // takes in the whole dive to
+        // debugger
+        // let subSectionElementsArray = document.querySelector("[name='editor']").querySelectorAll(`[${htmlDataElement}]`)
+        let subSectionElementsArray = document.querySelectorAll(`[${htmlDataElement}]`)
+        for (let i = 0; i < subSectionElementsArray.length; i++) {
+          // debugger
+          if(subSectionElementsArray[i].getAttribute(htmlDataElement) == e.target.getAttribute(htmlDataElement)) {
+            subSectionElementsArray[i].classList.remove("d-none")
+            subSectionElementsArray[i].classList.add("currentEdit")
+          }
+          else if (subSectionElementsArray[i].type != 'button'){
+            // debugger
+            subSectionElementsArray[i].classList.add("d-none")
+            subSectionElementsArray[i].classList.remove("currentEdit")
+          }
+        }
+        changeSVGZoom()
+      }
+
+
+      function updateSVGPersonalizedObject(input, htmlDataElement, e){
+        // debugger
+        let targetID = e.target.parentElement.getAttribute(htmlDataElement)
+      //returns an array even though its only 1 element. guess we can have 2 related feilds?
+        let subSectionElement = document.querySelector(`svg [${htmlDataElement}='${targetID}']`)
+
+        if(subSectionElement.tagName == 'image'){
+          // debugger
+          subSectionElement.setAttribute("href", input)
+        }
+        else if(subSectionElement.tagName == 'text'){
+          subSectionElement.innerHTML= input
+        }
+
+      }
+
+      function selectFirst(e){
+        let subsectionEditor = document.querySelector('[name="subSectionEditor"]');
+        let subsectionButton = subsectionEditor.querySelector(`button`).click()
+        let decoAreaButtons = subsectionEditor.querySelector('div.currentEdit')
+        decoAreaButtons.querySelector(`button`).click()
+      }
+
+
+      function createPageElement(elementType, elementID, elementName, customAttributeArray, elementClasses, parentElement){
+        var newElement = document.createElement(elementType)
+        newElement.setAttribute("id", elementID)
+        newElement.setAttribute("name", elementName )
+
+        for (var i = 0; i < customAttributeArray.length; i++) {
+          let attribute = Object.keys(customAttributeArray[i])
+          newElement.setAttribute(attribute, customAttributeArray[i][attribute] )
+        }
+
+        for (var i = 0; i < elementClasses.length; i++) {
+          newElement.classList.add(elementClasses[i])
+        }
+
+        parentElement.appendChild(newElement)
+
+        return newElement
+      }
+
+      document.getElementById('pnlOrderLineContent').querySelector('input').value
+
+    </script>
+    <script type="text/javascript">
+      jsonObject1 = {
+      	"Product":{
+      	"SettingID":1,
+      	"ItemNumber":"1625-85",
+      	"SKUs":[
+      		{"SKU":{
+      			"SKUID":1,
+      			"SKUNum":"1625-85BK",
+      			"Attributes":{
+      				"Images":[
+      					{"Image":{
+      						"ID":1,
+      						"ImageURL":"https://assets.pcna.com/t_560,f_auto,q_auto/Images/1625-85BK_B_FR_9456.png"
+      					}},
+      					{"Image":{
+      						"ID":2,
+      						"ImageURL":"https://assets.pcna.com/t_560,f_auto,q_auto/Images/1625-85BK_B_FR_9456.png"
+                }}
+      				],
+      				"Color":"Black",
+      				"Size":"22oz"
+      			}
+          }},
+          {"SKU":{
+      			"SKUID":2,
+      			"SKUNum":"1625-85WH",
+      			"Attributes":{
+      				"Images":[
+      					{"Image":{
+      						"ID":3,
+      						"ImageURL":"https://assets.pcna.com/t_560,f_auto,q_auto/Images/1625-85WH_B_FR_9456.png"
+      					}},
+      					{"Image":{
+      						"ID":4,
+      						"ImageURL":"https://assets.pcna.com/t_560,f_auto,q_auto/Images/1625-85WH_B_FR_9456.png"
+                }}
+      				],
+      				"Color":"White",
+      				"Size":"22oz"
+      			}
+      		}}
+      	],
+      	"Subsections":[
+      		{"Subsection":{
+      			"SubsectionID":1,
+      			"ImageID":3,
+      			"SubsectionName": "Front",
+      			"MaxTemplate":{
+      				"Height":251.92,
+      				"Width":232.96
+      			},
+      			"DecoAreas":[
+      				{"DecoArea":{
+      					"DecoAreaID":1,
+      					"DecoType": "Digital Ink",
+      					"FieldName": "FrontDigitalInk",
+      					"Template":{
+                  "File": "https:imagetemplate.jpg",
+      						"Dimensions":{
+      							"DecoAreaHeight":101.6,
+      							"DecoAreaWidth":232.96,
+      							"DecoAreaXOffset":0,
+      							"DecoAreaYOffset":75
+      						},
+      						"PersonalizedObjects":[
+      							{"PersonalizedObject":{
+      								"PersonalizedObjectID":1,
+      								"AreaType":"IMG",
+      								"ObjectSettings":{
+      									"Movable":true,
+      									"KeepInArea":false
+      								},
+      								"Text":"David Korff5",
+      								"Font":"Arial",
+      								"FontSize":10,
+      								"IMG": "https://printify.com/wp-content/uploads/2021/03/swagrabbit_logo.png",
+      								// "IMG": "",
+      								"ObjectSpecs":{
+      									"ObjectHeight":50,
+      									"ObjectWidth":60,
+      									"ObjectXOffset":35,
+      									"ObjectYOffset":25
+      								}
+      							}},
+      							{"PersonalizedObject":{
+      								"PersonalizedObjectID":2,
+      								"AreaType":"Text",
+      								"ObjectSettings":{
+      									"Movable":true,
+      									"KeepInArea":false
+      								},
+      								// "Text":"David Korff1",
+      								"Text":"",
+      								"Font":"Arial",
+      								"FontSize":10,
+      								"IMG": "file:///C:/Users/dkorff/Downloads/5.svg",
+      								"ObjectSpecs":{
+                        "ObjectHeight":50,
+      									"ObjectWidth":60,
+      									"ObjectXOffset":135,
+      									"ObjectYOffset":25
+      								}
+      							}}]
+      						}
+      					}}
+              ,{"DecoArea":{
+      					"DecoAreaID":2,
+      					"DecoType": "Laser",
+      					"FieldName": "FrontLaser",
+      					"Template":{
+                  "File": "https:imagetemplate.jpg",
+      						"Dimensions":{
+      							"DecoAreaHeight":30,
+      							"DecoAreaWidth":212.96,
+      							"DecoAreaXOffset":10,
+      							"DecoAreaYOffset":10
+      						},
+      						"PersonalizedObjects":[
+      							{"PersonalizedObject":{
+      								"PersonalizedObjectID":3,
+      								"AreaType":"IMG",
+      								"ObjectSettings":{
+      									"Movable":true,
+      									"KeepInArea":false
+      								},
+      								"Text":"David Korff2",
+      								"Font":"Arial",
+      								"FontSize":10,
+      								"IMG": "file:///C:/Users/dkorff/Downloads/5.svg",
+      								"ObjectSpecs":{
+                        "ObjectHeight":10,
+      									"ObjectWidth":20,
+      									"ObjectXOffset":120,
+      									"ObjectYOffset":10
+      								}
+      							}},
+      							{"PersonalizedObject":{
+      								"PersonalizedObjectID":4,
+      								"AreaType":"Text",
+      								"ObjectSettings":{
+      									"Movable":true,
+      									"KeepInArea":false
+      								},
+      								"Text":"David Korff3",
+      								"Font":"Arial",
+      								"FontSize":5,
+      								"IMG": "file:///C:/Users/dkorff/Downloads/5.svg",
+      								"ObjectSpecs":{
+                        "ObjectHeight":10,
+      									"ObjectWidth":20,
+      									"ObjectXOffset":40,
+      									"ObjectYOffset":10
+      								}
+      							}}]
+      					}
+              }}
+      			]
+      		}}
+          ,{"Subsection":{
+      			"SubsectionID":2,
+      			"ImageID":3,
+      			"SubsectionName": "Bottom",
+      			"MaxTemplate":{
+      				"Height":60,
+      				"Width":60
+      			},
+      			"DecoAreas":[
+              {"DecoArea":{
+      					"DecoAreaID":3,
+      					"DecoType": "Laser",
+      					"FieldName": "BottomLaser",
+      					"Template":{
+                  "File": "https:imagetemplate.jpg",
+      						"Dimensions":{
+      							"DecoAreaHeight":60,
+      							"DecoAreaWidth":60,
+      							"DecoAreaXOffset":0,
+      							"DecoAreaYOffset":0
+      						},
+      						"PersonalizedObjects":[
+      							{"PersonalizedObject":{
+      								"PersonalizedObjectID":5,
+      								"AreaType":"IMG",
+      								"ObjectSettings":{
+      									"Movable":true,
+      									"KeepInArea":false
+      								},
+      								"Text":"David Korff4",
+      								"Font":"Arial",
+      								"FontSize":10,
+      								"IMG": "file:///C:/Users/dkorff/Downloads/5.svg",
+      								"ObjectSpecs":{
+      									"ObjectHeight":30,
+      									"ObjectWidth":30,
+      									"ObjectXOffset":15,
+      									"ObjectYOffset":15
+      								}
+      							}}
+      						]
+      					}
+              }}
+      			]
+      		}}
+      	]
+      	}
+      }
+
+      jsonObject2 = {
+          "Product": {
+              "SettingID": 1,
+              "ItemNumber": "1625-85",
+              "SKUs": [
+                  {
+                      "SKU": {
+                          "SKUID": 1,
+                          "SKUNum": "1625-85BK",
+                          "Attributes": {
+                              "Images": [
+                                  {
+                                      "Image": {
+                                          "ID": 1,
+                                          "ImageURL": "https://assets.pcna.com/t_560,f_auto,q_auto/Images/1625-85BK_B_FR_9456.png"
+                                      }
+                                  },
+                                  {
+                                      "Image": {
+                                          "ID": 2,
+                                          "ImageURL": "https://assets.pcna.com/t_560,f_auto,q_auto/Images/1625-85BK_B_FR_9456.png"
+                                      }
+                                  }
+                              ],
+                              "Color": "Black",
+                              "Size": "22oz"
+                          }
+                      }
+                  },
+                  {
+                      "SKU": {
+                          "SKUID": 2,
+                          "SKUNum": "1625-85WH",
+                          "Attributes": {
+                              "Images": [
+                                  {
+                                      "Image": {
+                                          "ID": 3,
+                                          "ImageURL": "https://assets.pcna.com/t_560,f_auto,q_auto/Images/1625-85WH_B_FR_9456.png"
+                                      }
+                                  },
+                                  {
+                                      "Image": {
+                                          "ID": 4,
+                                          "ImageURL": "https://assets.pcna.com/t_560,f_auto,q_auto/Images/1625-85WH_B_FR_9456.png"
+                                      }
+                                  }
+                              ],
+                              "Color": "White",
+                              "Size": "22oz"
+                          }
+                      }
+                  }
+              ],
+              "Subsections": [
+                  {
+                      "Subsection": {
+                          "SubsectionID": 1,
+                          "ImageID": 3,
+                          "SubsectionName": "Front",
+                          "MaxTemplate": {
+                              "Height": 251.92,
+                              "Width": 232.96
+                          },
+                          "DecoAreas": [
+                              {
+                                  "DecoArea": {
+                                      "DecoAreaID": 1,
+                                      "DecoType": "Digital Ink",
+                                      "FieldName": "FrontDigitalInk",
+                                      "Template": {
+                                          "File": "https:imagetemplate.jpg",
+                                          "Dimensions": {
+                                              "DecoAreaHeight": 101.6,
+                                              "DecoAreaWidth": 232.96,
+                                              "DecoAreaXOffset": 0,
+                                              "DecoAreaYOffset": 75
+                                          },
+                                          "PersonalizedObjects": [
+                                              {
+                                                  "PersonalizedObject": {
+                                                      "PersonalizedObjectID": 1,
+                                                      "AreaType": "IMG",
+                                                      "ObjectSettings": {
+                                                          "Movable": true,
+                                                          "KeepInArea": false
+                                                      },
+                                                      "Text": "David Korff5",
+                                                      "Font": "Arial",
+                                                      "FontSize": 10,
+                                                      "IMG": "file:///C:/Users/dkorff/Downloads/5.svg",
+                                                      "ObjectSpecs": {
+                                                          "ObjectHeight": 50,
+                                                          "ObjectWidth": 60,
+                                                          "ObjectXOffset": 130.51458333219918,
+                                                          "ObjectYOffset": 55.162499999641895
+                                                      }
+                                                  }
+                                              },
+                                              {
+                                                  "PersonalizedObject": {
+                                                      "PersonalizedObjectID": 2,
+                                                      "AreaType": "Text",
+                                                      "ObjectSettings": {
+                                                          "Movable": true,
+                                                          "KeepInArea": false
+                                                      },
+                                                      "Text": "David Korff1",
+                                                      "Font": "Arial",
+                                                      "FontSize": 10,
+                                                      "IMG": "file:///C:/Users/dkorff/Downloads/5.svg",
+                                                      "ObjectSpecs": {
+                                                          "ObjectHeight": 50,
+                                                          "ObjectWidth": 60,
+                                                          "ObjectXOffset": 135,
+                                                          "ObjectYOffset": 25
+                                                      }
+                                                  }
+                                              }
+                                          ]
+                                      }
+                                  }
+                              },
+                              {
+                                  "DecoArea": {
+                                      "DecoAreaID": 2,
+                                      "DecoType": "Laser",
+                                      "FieldName": "FrontLaser",
+                                      "Template": {
+                                          "File": "https:imagetemplate.jpg",
+                                          "Dimensions": {
+                                              "DecoAreaHeight": 30,
+                                              "DecoAreaWidth": 212.96,
+                                              "DecoAreaXOffset": 10,
+                                              "DecoAreaYOffset": 10
+                                          },
+                                          "PersonalizedObjects": [
+                                              {
+                                                  "PersonalizedObject": {
+                                                      "PersonalizedObjectID": 3,
+                                                      "AreaType": "IMG",
+                                                      "ObjectSettings": {
+                                                          "Movable": true,
+                                                          "KeepInArea": false
+                                                      },
+                                                      "Text": "David Korff2",
+                                                      "Font": "Arial",
+                                                      "FontSize": 10,
+                                                      "IMG": "file:///C:/Users/dkorff/Downloads/5.svg",
+                                                      "ObjectSpecs": {
+                                                          "ObjectHeight": 10,
+                                                          "ObjectWidth": 20,
+                                                          "ObjectXOffset": 120,
+                                                          "ObjectYOffset": 10
+                                                      }
+                                                  }
+                                              },
+                                              {
+                                                  "PersonalizedObject": {
+                                                      "PersonalizedObjectID": 4,
+                                                      "AreaType": "Text",
+                                                      "ObjectSettings": {
+                                                          "Movable": true,
+                                                          "KeepInArea": false
+                                                      },
+                                                      "Text": "David Korff3",
+                                                      "Font": "Arial",
+                                                      "FontSize": 5,
+                                                      "IMG": "file:///C:/Users/dkorff/Downloads/5.svg",
+                                                      "ObjectSpecs": {
+                                                          "ObjectHeight": 10,
+                                                          "ObjectWidth": 20,
+                                                          "ObjectXOffset": 40,
+                                                          "ObjectYOffset": 10
+                                                      }
+                                                  }
+                                              }
+                                          ]
+                                      }
+                                  }
+                              }
+                          ]
+                      }
+                  }
+              ]
+          }
+      }
+</script>
+    <script type="text/javascript">
+      pxTOmmConversion = 3.7795275591
+      oldXPosition = null
+      oldYPosition = null
+      objectSelectedBool = false
+      selectedObject = null
+      debugBool = false
+
+      window.onload = dothesvg(jsonObject1)
+      document.addEventListener("DOMContentLoaded", selectFirst)
+      window.onresize = windowResized
+
+      function windowResized(){
+        let currentBackground = document.querySelector(".currentEdit .background");
+        changeSVGZoom()
+      }
+
+
+
+      function changeSVGZoom(){
+        let currentSvg = document.querySelector(".currentEdit .subsectionSVG ");
+        let currentBackground = document.querySelector(".currentEdit .background");
+        // debugger
+        currentSvg.style.zoom = currentBackground.width/currentSvg.clientWidth
+      }
+
+      function dothesvg(jsonObject){
+
+        subSectionsArray = jsonObject.Product.Subsections
+
+        for (var i = 0; i < subSectionsArray.length; i++) {
+          createDIV(subSectionsArray[i].Subsection)
+        }
+
+
+      }
+
+      function createDIV(subsection){
+        var windowZoom = pxTOmmConversion
+
+
+        var subsectionDiv = createPageElement("div",
+          subsection.SubsectionID,
+          `${subsection.SubsectionName}-BackgroundDiv`,
+          [{"data-subsectionid":subsection.SubsectionID},
+            {"height":subsection.MaxTemplate.Height*1.2},
+            {"width":subsection.MaxTemplate.Width*1.2}],
+          ["col-md-8", "col-12", "background", "d-none"],
+          document.getElementById("fullContainer")
+        )
+
+        var img = createPageElement("img",
+          subsection.SubsectionID,
+          subsection.SubsectionName,
+          [{"data-subsectionid":subsection.SubsectionID},
+            {"style":"z-index:-1"},
+            {"width":subsection.MaxTemplate.Width}],
+          ["col-md-8", "col-12", "d-none", "position-absolute", "background"],
+          subsectionDiv
+        )
+        img.src = "https://assets.pcna.com/t_560,f_auto,q_auto/Images/1625-85BK_B_FR_2629.png";
+
+
+
+        var div = document.createElement("div")
+        div.setAttribute("id", subsection.SubsectionID )
+        div.setAttribute("data-subsectionid", subsection.SubsectionID )
+        div.setAttribute("name", subsection.SubsectionName )
+        // div.setAttribute("class", "col-md-8 col-12 zoom-pxtomm d-none" )
+        div.setAttribute("class", "col-md-8 col-12 d-none svgDiv" )
+
+
+
+        // div.setAttribute("style", "padding-top: 50px")
+        // div
+
+        subsectionDiv.appendChild(div)
+
+
+
+        createCanvas(div, subsection)
+
+
+      }
+
+      function createCanvas(div, subsection){
+        // Create the svg element
+        svgElement = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+
+        svgElement.setAttribute("id", subsection.SubsectionID )
+        svgElement.setAttribute("data-subsectionid", subsection.SubsectionID )
+        svgElement.setAttribute("name", subsection.SubsectionName )
+        svgElement.setAttribute("height", subsection.MaxTemplate.Height)
+        svgElement.setAttribute("width", subsection.MaxTemplate.Width)
+        svgElement.setAttribute("class", 'subsectionSVG')
+        div.appendChild(svgElement)
+
+        // add a border
+        if(false){
+          svgBorder = document.createElementNS("http://www.w3.org/2000/svg", 'rect');
+          svgBorder.setAttribute("height", subsection.MaxTemplate.Height)
+          svgBorder.setAttribute("width", subsection.MaxTemplate.Width)
+          svgBorder.setAttribute("style","stroke:black;stroke-width:5;fill-opacity:0.0")
+          svgElement.appendChild(svgBorder)
+        }
+
+
+        // creating decoarea
+        decoAreaArray = subsection.DecoAreas
+        for (var x = 0; x < decoAreaArray.length; x++) {
+          createDecoArea(svgElement, decoAreaArray[x].DecoArea)
+        }
+
+      }
+
+      function createDecoArea(svgElement, decoArea){
+        // create a decoarea svg
+        decoAreaSVG = document.createElementNS("http://www.w3.org/2000/svg", 'svg');
+        decoAreaSVG.setAttribute("height", decoArea.Template.Dimensions.DecoAreaHeight)
+        decoAreaSVG.setAttribute("width", decoArea.Template.Dimensions.DecoAreaWidth)
+        decoAreaSVG.setAttribute("x", decoArea.Template.Dimensions.DecoAreaXOffset)
+        decoAreaSVG.setAttribute("y", decoArea.Template.Dimensions.DecoAreaYOffset)
+        decoAreaSVG.classList.add("d-none")
+        decoAreaSVG.setAttribute("style","stroke:black;stroke-width:1;fill-opacity:0.0")
+        decoAreaSVG.setAttribute("id", `DecoAreaID${decoArea.DecoAreaID}`)
+        decoAreaSVG.setAttribute("data-decoareaid", decoArea.DecoAreaID)
+        decoAreaSVG.addEventListener("mousemove", mouseState)
+
+        svgElement.appendChild(decoAreaSVG)
+
+        // create a group
+        decoAreaGroup = document.createElementNS("http://www.w3.org/2000/svg", 'g');
+        decoAreaGroup.setAttribute("height", decoArea.Template.Dimensions.DecoAreaHeight)
+        decoAreaGroup.setAttribute("width", decoArea.Template.Dimensions.DecoAreaWidth)
+        decoAreaGroup.setAttribute("x", 0)
+        decoAreaGroup.setAttribute("y", 0)
+        decoAreaGroup.setAttribute("style","stroke:black;stroke-width:1;fill-opacity:0.0")
+        decoAreaGroup.setAttribute("id", `DecoAreaID${decoArea.DecoAreaID}`)
+        // decoAreaGroup.addEventListener("mousemove", mouseState)
+
+        decoAreaSVG.appendChild(decoAreaGroup)
+
+        // create a decoarea border
+        if(true){
+          decoAreaBorder = document.createElementNS("http://www.w3.org/2000/svg", 'rect');
+          decoAreaBorder.setAttribute("class", "border")
+          decoAreaBorder.setAttribute("height", decoArea.Template.Dimensions.DecoAreaHeight)
+          decoAreaBorder.setAttribute("width", decoArea.Template.Dimensions.DecoAreaWidth)
+          decoAreaBorder.setAttribute("x", 0)
+          decoAreaBorder.setAttribute("y", 0)
+          decoAreaBorder.setAttribute("style","stroke:black;stroke-width:1;fill-opacity:0.0")
+          decoAreaGroup.appendChild(decoAreaBorder)
+        }
+
+
+
+        // creating personalized areas
+        personalizedAreaArray = decoArea.Template.PersonalizedObjects
+        for (var y = 0; y < personalizedAreaArray.length; y++) {
+          createPersonalizedObjects(decoAreaGroup, personalizedAreaArray[y].PersonalizedObject)
+        }
+      }
+
+      function createPersonalizedObjects(decoAreaGroup, personalizedObject){
+        // make another group for each personalized object
+        // debugger
+        personalizedObjectGroup = document.createElementNS("http://www.w3.org/2000/svg", 'g');
+        personalizedObjectGroup.setAttribute("height", personalizedObject.ObjectSpecs.ObjectHeight)
+        personalizedObjectGroup.setAttribute("width", personalizedObject.ObjectSpecs.ObjectWidth)
+        personalizedObjectGroup.setAttribute("x", (personalizedObject.ObjectSpecs.ObjectXOffset+parseFloat(decoAreaGroup.getAttribute("x"))))
+        personalizedObjectGroup.setAttribute("y", (personalizedObject.ObjectSpecs.ObjectYOffset+parseFloat(decoAreaGroup.getAttribute("y"))))
+        personalizedObjectGroup.setAttribute("style","stroke:black;stroke-width:1;fill-opacity:0.0")
+        personalizedObjectGroup.setAttribute("id", personalizedObject.PersonalizedObjectID )
+        personalizedObjectGroup.setAttribute("class", "personalizedObjectGroup")
+        personalizedObjectGroup.setAttribute("z", 2)
+        decoAreaGroup.appendChild(personalizedObjectGroup)
+
+
+        // create a personalized object border
+        if(false){
+          personalizedObjectBorder = document.createElementNS("http://www.w3.org/2000/svg", 'rect');
+          personalizedObjectBorder.setAttribute("height", personalizedObject.ObjectSpecs.ObjectHeight)
+          personalizedObjectBorder.setAttribute("width", personalizedObject.ObjectSpecs.ObjectWidth)
+          personalizedObjectBorder.setAttribute("x", (personalizedObject.ObjectSpecs.ObjectXOffset+parseFloat(decoAreaGroup.getAttribute("x"))))
+          personalizedObjectBorder.setAttribute("y", (personalizedObject.ObjectSpecs.ObjectYOffset+parseFloat(decoAreaGroup.getAttribute("y"))))
+          personalizedObjectBorder.setAttribute("id", personalizedObject.PersonalizedObjectID)
+          personalizedObjectBorder.setAttribute("style","stroke:black;stroke-width:1;fill-opacity:0.0")
+          personalizedObjectGroup.appendChild(personalizedObjectBorder)
+        }
+
+
+        // add the personalization
+        if(personalizedObject.AreaType == "IMG"){
+          svgPersonalizedeElement = document.createElementNS("http://www.w3.org/2000/svg", 'image');
+          svgPersonalizedeElement.setAttribute("href", personalizedObject.IMG)
+          svgPersonalizedeElement.setAttribute("height", personalizedObject.ObjectSpecs.ObjectHeight)
+          svgPersonalizedeElement.setAttribute("width", personalizedObject.ObjectSpecs.ObjectWidth)
+          svgPersonalizedeElement.setAttribute("x", (personalizedObject.ObjectSpecs.ObjectXOffset+parseFloat(decoAreaGroup.getAttribute("x"))))
+          svgPersonalizedeElement.setAttribute("y", (personalizedObject.ObjectSpecs.ObjectYOffset+parseFloat(decoAreaGroup.getAttribute("y"))))
+          svgPersonalizedeElement.setAttribute("id", `PersonalizedObjectID${personalizedObject.PersonalizedObjectID}`)
+          svgPersonalizedeElement.setAttribute("data-personalizedobjectid",personalizedObject.PersonalizedObjectID)
+          // svgPersonalizedeElement.addEventListener("mousedown", function(){ mousedown(svgPersonalizedeElement) })
+          // svgPersonalizedeElement.addEventListener("mouseup", function(){ mouseup() })
+          personalizedObjectGroup.appendChild(svgPersonalizedeElement)
+        }
+
+        else if(personalizedObject.AreaType == "Text"){
+          svgPersonalizedeElement = document.createElementNS("http://www.w3.org/2000/svg", 'text')
+          svgPersonalizedeElement.setAttributeNS(null, "x", (personalizedObject.ObjectSpecs.ObjectXOffset+parseFloat(decoAreaGroup.getAttribute("x"))));
+          svgPersonalizedeElement.setAttributeNS(null, "y", (personalizedObject.ObjectSpecs.ObjectYOffset+parseFloat(decoAreaGroup.getAttribute("y")))+personalizedObject.FontSize);
+          svgPersonalizedeElement.setAttributeNS(null, "font-size", personalizedObject.FontSize);
+          svgPersonalizedeElement.setAttributeNS(null, "font-family", personalizedObject.Font);
+          svgPersonalizedeElement.setAttribute("id", `PersonalizedObjectID${personalizedObject.PersonalizedObjectID}`)
+          svgPersonalizedeElement.setAttribute("data-personalizedobjectid",personalizedObject.PersonalizedObjectID)
+
+          // debugger
+          svgPersonalizedeElement.innerHTML = personalizedObject.Text
+          personalizedObjectGroup.appendChild(svgPersonalizedeElement)
+        }
+        //gives it the parent svg data-decoareaid
+        svgPersonalizedeElement.setAttribute("data-decoareaid", decoAreaGroup.parentElement.getAttribute('data-decoareaid'))
+        svgPersonalizedeElement.addEventListener("mousedown", function(e) {
+            mouseState1(personalizedObject, e)
+        })
+        svgPersonalizedeElement.addEventListener("dblclick", function(e) {
+            doubleClickObject(personalizedObject, e)
+        })
+
+
+        // $(`#PersonalizedObjectID${personalizedObject.PersonalizedObjectID}`).on('mousedown mouseup', function(event) {
+        //   // debugger
+        //     mouseState1(personalizedObject, event)
+        // });
+
+
+      }
+
+
+
+      // $('.personalizedObjectGroup').on('mousedown mouseup', function mouseState(e) {
+      //     if (e.type == "mousedown") {
+      //         //code triggers on hold
+      //         objectSelectedBool = true
+      //         selectedObject = e.delegateTarget
+      //
+      //         console.log(`object selected x:${oldXPosition}, y:${oldYPosition}`);
+      //         // console.log(objectSelectedBool);
+      //         // debugger
+      //         // console.log(e);
+      //         oldXPosition = e.pageX
+      //         oldYPosition = e.pageY
+      //     }
+      // });
+      function mouseState1(personalizedObject, e){
+        // debugger
+        if (e.type == "mousedown") {
+            //code triggers on hold
+            selectedJSONObject = personalizedObject
+            selectedObject = e.target
+            objectSelectedBool = true
+
+            // console.log(`object selected x:${oldXPosition}, y:${oldYPosition}`);
+            // console.log(objectSelectedBool);
+            // debugger
+            // console.log(e);
+            oldXPosition = e.pageX
+            oldYPosition = e.pageY
+        }
+      }
+
+
+      $('svg').on('mouseup', function mouseState(e) {
+          // if (e.type == "mousedown") {
+          //     //code triggers on hold
+          //     console.log("hold");
+          // }
+          if (e.type == "mouseup") {
+              //code triggers on hold
+              objectSelectedBool = false
+              // console.log("object dropped");
+              // console.log(objectSelectedBool);
+          }
+      });
+
+
+
+      function moveObject(selectedObject, xPositionMovement, yPositionMovement, decoAreaElement){
+        // debugger
+        let zoomMultiplier = document.querySelector(".currentEdit .subsectionSVG ").style.zoom
+        // debugger
+        validateMovement(selectedObject, xPositionMovement, yPositionMovement, decoAreaElement)
+
+        selectedObject.setAttribute("x", (parseFloat(selectedObject.getAttribute("x"))+xPositionMovement/zoomMultiplier))
+        selectedObject.setAttribute("y", (parseFloat(selectedObject.getAttribute("y"))+yPositionMovement/zoomMultiplier))
+        // // debugger
+        // get the subsection we're in and cycle through those DecoAreas
+        // find the
+        var selectedObjectSVGID = selectedObject.id
+        var selectedDecoAreaSVGID = selectedObject.parentElement.parentElement.parentElement.id
+        var selectedObjectSubsectionSVGID = selectedObject.parentElement.parentElement.parentElement.parentElement.id
+
+        var selectedObjectY = selectedObject.getAttribute("y")
+        var selectedObjectX = selectedObject.getAttribute("x")
+        selectedJSONObject.ObjectSpecs.ObjectYOffset = parseFloat(selectedObjectX = selectedObject.getAttribute("y"))
+        selectedJSONObject.ObjectSpecs.ObjectXOffset = parseFloat(selectedObjectX = selectedObject.getAttribute("x"))
+
+
+        // find the subsection in the json
+        // for (var i=0 ; i < jsonObject.Product.Subsections.length ; i++){
+        //   var selectedSubsectionJSON = jsonObject.Product.Subsections[i].Subsection
+        //   var selectedSubsectionJSONID = selectedSubsectionJSON.SubsectionID
+        //   // debugger
+        //     if (selectedObjectSubsectionSVGID == selectedSubsectionJSONID) {
+        //       // find the deco area in the json
+        //       for (var x = 0; x < selectedSubsectionJSON.DecoAreas.length; x++) {
+        //         var decoAreaJSON = selectedSubsectionJSON.DecoAreas[x].DecoArea
+        //         var decoAreaJSONID = decoAreaJSON.DecoAreaID
+        //         if(`DecoAreaID${decoAreaJSONID}` == selectedDecoAreaSVGID){
+        //
+        //           for (var z = 0; z < decoAreaJSON.Template.PersonalizedObjects.length; z++) {
+        //             var personalizedObjectJSON = decoAreaJSON.Template.PersonalizedObjects[z].PersonalizedObject
+        //             var personalizedObjectJSONID = personalizedObjectJSON.PersonalizedObjectID
+        //
+        //             if(`PersonalizedObjectID${personalizedObjectJSONID}` == selectedObjectSVGID){
+        //               // console.log(`got it. it's index ${z},  personalized area ${selectedObjectSVGID} in subsection id ${selectedSubsectionJSONID} deco area ${decoAreaJSONID} personalized area ${personalizedObjectJSONID}`)
+        //
+        //               // change the JSON X and Y coordinates
+        //               var selectedObjectY = selectedObject.getAttribute("y")
+        //               var selectedObjectX = selectedObject.getAttribute("x")
+        //               personalizedObjectJSON.ObjectSpecs.ObjectXOffset = selectedObject.getAttribute("x")
+        //               personalizedObjectJSON.ObjectSpecs.ObjectYOffset = selectedObject.getAttribute("y")
+        //             }
+        //           }
+        //         }
+        //       }
+        //     }
+        // }
+      }
+
+      function validateMovement(selectedObject, xPositionMovement, yPositionMovement, decoAreaElement){
+        // debugger
+        // var futureYPosition = parseFloat(selectedObject.getAttribute("y"))+yPositionMovement
+        // var futureXPosition = parseFloat(selectedObject.getAttribute("x"))
+        var decoYMax = parseFloat(decoAreaElement.getAttribute("y"))
+        var decoXMax = parseFloat(decoAreaElement.getAttribute("x"))
+        var decoYMin = parseFloat(decoAreaElement.getAttribute("y"))+parseFloat(decoAreaElement.getAttribute("height"))
+        var decoXMin = parseFloat(decoAreaElement.getAttribute("x"))+parseFloat(decoAreaElement.getAttribute("width"))
+
+        var selectedObjectBounding = selectedObject.getBoundingClientRect()
+        var decoAreaBounding = decoAreaElement.getBoundingClientRect()
+
+        // console.log(selectedObject.x)
+
+
+        //if the bounds of the decoare are expanded, this means the objects within it are too far so make the border red.
+        if(decoAreaElement.width.baseVal.value.toFixed(2) != decoAreaBounding.width.toFixed(2) || decoAreaElement.height.baseVal.value.toFixed(2) != decoAreaBounding.height.toFixed(2)){
+          decoAreaElement.getElementsByClassName("border")[0].setAttribute("style","stroke:red;stroke-width:1;fill-opacity:0.0")
+        }
+        else{
+          // console.log("make black")
+          decoAreaElement.getElementsByClassName("border")[0].setAttribute("style","stroke:black;stroke-width:1;fill-opacity:0.0")
+        }
+
+      }
+
+
+      function mouseState(e){
+          if(objectSelectedBool){
+            // console.log("MOVING AND SELECTED")
+            xPositionMovement = e.pageX - oldXPosition
+            yPositionMovement = e.pageY - oldYPosition
+            oldXPosition = e.pageX
+            oldYPosition = e.pageY
+
+            moveObject(selectedObject, xPositionMovement, yPositionMovement, e.currentTarget)
+            // //debugger
+          }
+          else{
+            console.log("MOVING")
+          }
+      }
+      // console.log(`item was moved ${xPositionMovement} in the x`)
+      function debug(){
+        if(debugBool){
+          debugger
+        }
+      }
+      function debugTrue(){
+        debugBool = true
+      }
+      function debugFalse(){
+        debugBool = false
+      }
+
+      function doubleClickObject(personalizedObject, e){
+        // debugger
+        console.log("doubley")
+      }
+
+    </script>
+    <script type="text/javascript">
+      window.onload = doTheEditor(jsonObject1)
+
+      function doTheEditor(jsonObject){
+
+        // create the main parent div
+        var editorDiv = document.createElement("div")
+
+        editorDiv.setAttribute("class", "col-md-4 col-12 rounded-top")
+        editorDiv.setAttribute("name", "editor")
+        document.getElementById("fullContainer").appendChild(editorDiv)
+
+        // create editor title
+        var editorTitleDiv = document.createElement("div")
+        editorTitleDiv.setAttribute("class", "row rounded-top card-header")
+        editorTitleDiv.innerHTML = "SKU"
+        editorDiv.appendChild(editorTitleDiv)
+
+        // Create Subsections div
+        var editorSubsectionsDiv = document.createElement("div")
+        editorSubsectionsDiv.setAttribute("class", "mt-1")
+        editorSubsectionsDiv.setAttribute("name", "subSectionEditor")
+        editorDiv.appendChild(editorSubsectionsDiv)
+
+        // Create Subsections buttons div
+        var editorSubsectionsButtonsDiv = document.createElement("div")
+        editorSubsectionsButtonsDiv.setAttribute("class", "btn-group row")
+        editorSubsectionsButtonsDiv.setAttribute("role", "group")
+        editorSubsectionsDiv.appendChild(editorSubsectionsButtonsDiv)
+
+        // debugger
+        var jsonSubsectionsArray = jsonObject.Product.Subsections
+
+        for (var i = 0; i < jsonSubsectionsArray.length; i++) {
+          let jsonSubsection = jsonObject.Product.Subsections[i].Subsection
+          let subsectionName = jsonSubsection.SubsectionName
+
+          let subsectionButton = document.createElement("button")
+          subsectionButton.setAttribute("class", "btn btn-outline-primary")
+          subsectionButton.setAttribute("type", "button")
+          subsectionButton.setAttribute("data-subsectionid", jsonSubsection.SubsectionID)
+
+          subsectionButton.innerHTML = subsectionName
+          editorSubsectionsButtonsDiv.appendChild(subsectionButton)
+          subsectionButton.addEventListener("click", function(e) {
+              subsectionClicked(jsonSubsection, editorSubsectionsDiv, editorSubsectionsButtonsDiv, e)
+          })
+          createDecoAreaEditor(jsonSubsection, editorSubsectionsDiv)
+        }
+
+      }
+
+      function subsectionClicked(jsonSubsection, editorSubsectionsDiv, editorSubsectionsButtonsDiv, e){
+        console.log("helloe")
+        buttonActiveSetting(editorSubsectionsButtonsDiv, e)
+        // debugger
+        unHideChildDivs("data-subsectionid", e)
+      }
+
+
+
+
+      function createDecoAreaEditor(jsonSubsection, editorSubsectionsDiv){
+        // debugger
+        // create deco area div
+        let editorDecoAreaDiv = document.createElement("div")
+        editorDecoAreaDiv.setAttribute("name", "decoAreaEditor")
+        editorDecoAreaDiv.setAttribute("data-subsectionid", jsonSubsection.SubsectionID)
+        editorDecoAreaDiv.setAttribute("class", "row d-none")
+        editorSubsectionsDiv.appendChild(editorDecoAreaDiv)
+
+
+        // Create Subsections buttons div
+        let editorDecoAreaButtonsDiv = document.createElement("div")
+        editorDecoAreaButtonsDiv.setAttribute("class", "mt-1 btn-group")
+        editorDecoAreaButtonsDiv.setAttribute("role", "group")
+        editorDecoAreaDiv.appendChild(editorDecoAreaButtonsDiv)
+
+        // debugger
+        let jsonDecoAreasArray = jsonSubsection.DecoAreas
+
+        for (let i = 0; i < jsonDecoAreasArray.length; i++) {
+          let jsonDecoArea = jsonDecoAreasArray[i].DecoArea
+          let decoAreaName = jsonDecoArea.FieldName
+
+          let decoButton = document.createElement("button")
+          decoButton.setAttribute("class", "btn btn-outline-primary")
+          decoButton.setAttribute("type", "button")
+          decoButton.setAttribute("data-decoareaid", jsonDecoArea.DecoAreaID)
+          decoButton.innerHTML = decoAreaName
+          editorDecoAreaButtonsDiv.appendChild(decoButton)
+          decoButton.addEventListener("click", function(e) {
+              decoAreaClicked(jsonDecoArea, editorDecoAreaDiv, editorDecoAreaButtonsDiv, e)
+          })
+          // debugger
+          let personalizedObjectArray = jsonDecoArea.Template.PersonalizedObjects
+
+          //create the personalized area div
+          let editorPersonalizedObjectDiv = document.createElement("div")
+          editorPersonalizedObjectDiv.setAttribute("name", "PersonalizedObjectEditor")
+          editorPersonalizedObjectDiv.setAttribute("data-decoareaid", jsonDecoArea.DecoAreaID)
+          editorPersonalizedObjectDiv.setAttribute("class", "mt-1 d-none")
+          editorDecoAreaDiv.appendChild(editorPersonalizedObjectDiv)
+
+          for (let x = 0; x < personalizedObjectArray.length; x++) {
+            createPersonalizedObject(jsonDecoArea, personalizedObjectArray[x].PersonalizedObject, editorPersonalizedObjectDiv)
+          }
+        }
+      }
+
+      function createPersonalizedObject(jsonDecoArea, personalizedObject, editorPersonalizedObjectDiv){
+
+        // create the personalized element div
+        let editorPersonalizedElementsDiv = document.createElement("div")
+        editorPersonalizedElementsDiv.setAttribute("class", "input-group mb-3")
+        editorPersonalizedElementsDiv.setAttribute("data-personalizedobjectid", personalizedObject.PersonalizedObjectID)
+        editorPersonalizedObjectDiv.setAttribute("data-decoareaid", jsonDecoArea.DecoAreaID)
+        editorPersonalizedObjectDiv.appendChild(editorPersonalizedElementsDiv)
+
+        //create the type of element Label div
+        let editorPersonalizedElementLabelDiv = document.createElement("div")
+        editorPersonalizedElementLabelDiv.setAttribute("class", "input-group-prepend")
+        editorPersonalizedElementsDiv.appendChild(editorPersonalizedElementLabelDiv)
+
+        //create the type of element Label div
+        let editorPersonalizedElementLabel = document.createElement("span")
+        editorPersonalizedElementLabel.setAttribute("class", "input-group-text")
+
+
+        if (personalizedObject.AreaType == "IMG"){
+          editorPersonalizedElementLabel.innerHTML = "Image URL"
+        }
+        else{
+          editorPersonalizedElementLabel.innerHTML = "Text"
+        }
+
+
+        editorPersonalizedElementLabelDiv.appendChild(editorPersonalizedElementLabel)
+
+        //create the input field
+        let editorPersonalizedElementInput = document.createElement("input")
+        editorPersonalizedElementInput.setAttribute("class", "form-control")
+        editorPersonalizedElementInput.setAttribute("type", "text")
+
+        if (personalizedObject.AreaType == "IMG"){
+          editorPersonalizedElementInput.value = `${personalizedObject.IMG}`
+        }
+        else{
+          editorPersonalizedElementInput.value = `${personalizedObject.Text}`
+        }
+
+        editorPersonalizedElementInput.addEventListener("keyup", function(e) {
+            editorValueChanged(personalizedObject,editorPersonalizedElementInput, e)
+        })
+
+        editorPersonalizedElementsDiv.appendChild(editorPersonalizedElementInput)
+        // debugger
+
+
+      }
+
+      function editorValueChanged(personalizedObject, editorPersonalizedElementInput, e){
+        //update the jsonObject
+        if(personalizedObject.AreaType =='Text'){
+          personalizedObject.Text = e.target.value
+        }
+        else if(personalizedObject.AreaType =='IMG'){
+          personalizedObject.IMG = e.target.value
+        }
+
+        updateSVGPersonalizedObject(e.target.value, 'data-personalizedobjectid', e)
+        // debugger
+      }
+
+      function decoAreaClicked(jsonDecoArea, editorSubsectionsDiv, editorDecoAreaButtonsDiv, e){
+        unHideChildDivs('data-decoareaid', e)
+        buttonActiveSetting(editorDecoAreaButtonsDiv, e)
+      }
+</script>
+
+
+
+
+  </body>
+</html>

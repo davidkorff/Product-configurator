@@ -92,8 +92,8 @@ jsonObject1 = {
                                                 "ObjectSpecs": {
                                                     "ObjectHeight": 50,
                                                     "ObjectWidth": 60,
-                                                    "ObjectXOffset": 87.91679595726762,
-                                                    "ObjectYOffset": 27.770512877343847
+                                                    "ObjectXOffset": 34,
+                                                    "ObjectYOffset": 26
                                                 }
                                             }
                                         },
@@ -105,7 +105,7 @@ jsonObject1 = {
                                                     "Movable": true,
                                                     "KeepInArea": false
                                                 },
-                                                "Text": "segwwegwr",
+                                                "Text": "",
                                                 "Font": "Arial",
                                                 "FontSize": 10,
                                                 "IMG": "file:///C:/Users/dkorff/Downloads/5.svg",
@@ -114,115 +114,6 @@ jsonObject1 = {
                                                     "ObjectWidth": 60,
                                                     "ObjectXOffset": 135,
                                                     "ObjectYOffset": 25
-                                                }
-                                            }
-                                        }
-                                    ]
-                                }
-                            }
-                        },
-                        {
-                            "DecoArea": {
-                                "DecoAreaID": 2,
-                                "DecoType": "Laser",
-                                "FieldName": "FrontLaser",
-                                "Template": {
-                                    "File": "https:imagetemplate.jpg",
-                                    "Dimensions": {
-                                        "DecoAreaHeight": 30,
-                                        "DecoAreaWidth": 212.96,
-                                        "DecoAreaXOffset": 10,
-                                        "DecoAreaYOffset": 10
-                                    },
-                                    "PersonalizedObjects": [
-                                        {
-                                            "PersonalizedObject": {
-                                                "PersonalizedObjectID": 3,
-                                                "AreaType": "IMG",
-                                                "ObjectSettings": {
-                                                    "Movable": true,
-                                                    "KeepInArea": false
-                                                },
-                                                "Text": "David Korff2",
-                                                "Font": "Arial",
-                                                "FontSize": 10,
-                                                "IMG": "file:///C:/Users/dkorff/Downloads/5.svg",
-                                                "ObjectSpecs": {
-                                                    "ObjectHeight": 10,
-                                                    "ObjectWidth": 20,
-                                                    "ObjectXOffset": 182.89064231570546,
-                                                    "ObjectYOffset": 11.939359014140699
-                                                }
-                                            }
-                                        },
-                                        {
-                                            "PersonalizedObject": {
-                                                "PersonalizedObjectID": 4,
-                                                "AreaType": "Text",
-                                                "ObjectSettings": {
-                                                    "Movable": true,
-                                                    "KeepInArea": false
-                                                },
-                                                "Text": "David Korff3g55et",
-                                                "Font": "Arial",
-                                                "FontSize": 5,
-                                                "IMG": "file:///C:/Users/dkorff/Downloads/5.svg",
-                                                "ObjectSpecs": {
-                                                    "ObjectHeight": 10,
-                                                    "ObjectWidth": 20,
-                                                    "ObjectXOffset": 40,
-                                                    "ObjectYOffset": 10
-                                                }
-                                            }
-                                        }
-                                    ]
-                                }
-                            }
-                        }
-                    ]
-                }
-            },
-            {
-                "Subsection": {
-                    "SubsectionID": 2,
-                    "ImageID": 3,
-                    "SubsectionName": "Bottom",
-                    "MaxTemplate": {
-                        "Height": 60,
-                        "Width": 60
-                    },
-                    "DecoAreas": [
-                        {
-                            "DecoArea": {
-                                "DecoAreaID": 3,
-                                "DecoType": "Laser",
-                                "FieldName": "BottomLaser",
-                                "Template": {
-                                    "File": "https:imagetemplate.jpg",
-                                    "Dimensions": {
-                                        "DecoAreaHeight": 60,
-                                        "DecoAreaWidth": 60,
-                                        "DecoAreaXOffset": 0,
-                                        "DecoAreaYOffset": 0
-                                    },
-                                    "PersonalizedObjects": [
-                                        {
-                                            "PersonalizedObject": {
-                                                "PersonalizedObjectID": 5,
-                                                "AreaType": "IMG",
-                                                "ObjectSettings": {
-                                                    "Movable": true,
-                                                    "KeepInArea": false
-                                                },
-                                                "Text": "David Korff4",
-                                                "Font": "Arial",
-                                                "FontSize": 10,
-                                                "IMG": "file:///C:/Users/dhkorff/Downloads/5.svg",
-                                                "ObjectSpecs": {
-                                                    "ObjectHeight": 30,
-                                                    "ObjectWidth": 30,
-                                                    "ObjectXOffset": 26.41495501794288,
-                                                    "ObjectYOffset": 28.34122867722074
                                                 }
                                             }
                                         }
