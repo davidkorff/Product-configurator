@@ -34,7 +34,7 @@ function createDIV(subsection, parentElement){
       // {"style":"z-index:1"},
       {"width":subsection.MaxTemplate.Width},
       {"height":subsection.MaxTemplate.Height},
-    {"style":"position: absolute; z-index:1"}],
+    {"style":"position: absolute; z-index:1; max-width:!"}],
     [
       // "col-md-8",
       // "col-12",
