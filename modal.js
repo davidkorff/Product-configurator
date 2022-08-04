@@ -74,8 +74,9 @@ function addDecoContextMenu(parentElement){
 
 function addModalButton(){
 
-  var modalButton = createPageElement("button", "configModalButton", "configModal",[{"data-toggle":"modal"},{"data-target":"#exampleModal"}],["btn", "btn-primary"],document.body)
+  var modalButton = createPageElement("button", "configModalButton", "configModal",[{"data-toggle":"modal"},{"data-target":"#exampleModal"}],["btn", "btn-primary"],document.querySelector("#customizerButton"))
   modalButton.innerHTML = "Open Configurator"
+
 
 
 
