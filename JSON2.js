@@ -87,6 +87,7 @@ jsonObject1 = {
                                                 },
                                                 "Text": "David Korff5",
                                                 "Font": "Arial",
+                                                "Font-Options":["Arial","Helvetica"],
                                                 "FontSize": 10,
                                                 "IMG": "https://printify.com/wp-content/uploads/2021/03/swagrabbit_logo.png",
                                                 "ObjectSpecs": {
@@ -105,7 +106,7 @@ jsonObject1 = {
                                                     "Movable": true,
                                                     "KeepInArea": false
                                                 },
-                                                "Text": "",
+                                                "Text": "Text",
                                                 "Font": "Arial",
                                                 "FontSize": 10,
                                                 "IMG": "file:///C:/Users/dkorff/Downloads/5.svg",

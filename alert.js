@@ -1,1 +1,1 @@
-window.onload = alert("v3")
+window.onload = alert("v4")

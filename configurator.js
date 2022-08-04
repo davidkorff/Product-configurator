@@ -81,9 +81,9 @@ function createDecoArea(svgElementParent, decoArea){
   var decoAreaSVG = createPageElement("svg",`DecoAreaID${decoArea.DecoAreaID}`,"",[{"height":decoArea.Template.Dimensions.DecoAreaHeight},{"width": decoArea.Template.Dimensions.DecoAreaWidth},{"x":decoArea.Template.Dimensions.DecoAreaXOffset},{"y":decoArea.Template.Dimensions.DecoAreaYOffset},{"data-decoareaid":decoArea.DecoAreaID},{"style":"stroke:black;stroke-width:1;fill-opacity:0.0"}],["d-none"],svgElementParent)
   //activate the below
   decoAreaSVG.addEventListener("mousemove", mouseState)
-  decoAreaSVG.addEventListener("contextmenu", function(e) {
-      rightClickDecoArea(e,decoArea)
-  })
+  // decoAreaSVG.addEventListener("contextmenu", function(e) {
+  //     rightClickDecoArea(e,decoArea)
+  // })
 
 
 
@@ -93,6 +93,9 @@ function createDecoArea(svgElementParent, decoArea){
   // create a decoarea border
   if(true){
     var decoAreaBorder = createPageElement("rect","","",[{"height":decoArea.Template.Dimensions.DecoAreaHeight},{"width": decoArea.Template.Dimensions.DecoAreaWidth},{"x":0},{"y":0},{"style":"stroke:black;stroke-width:1;fill-opacity:0.0"}],["border"],decoAreaGroup)
+    decoAreaBorder.addEventListener("contextmenu", function(e) {
+        rightClickDecoArea(e,decoArea)
+    })
   }
 
   // creating personalized areas
@@ -154,10 +157,15 @@ function createPersonalizedObjects(decoAreaGroup, personalizedObject){
   svgPersonalizedeElement.addEventListener("dblclick", function(e) {
       doubleClickObject(personalizedObject, e)
   })
+  svgPersonalizedeElement.addEventListener("contextmenu", function(e) {
+      rightClickDecoArea(e, personalizedObject)
+  })
+  // svgPersonalizedeElement.addEventListener("contextmenu", function(e) {
+  //     rightClickPersonalizedArea(e, personalizedObject)
+  // })
 }
 
 function doubleClickObject(personalizedObject, e){
-  // debugger
   console.log("doubley")
 }
 

@@ -1,4 +1,4 @@
-function rightClickDecoArea(e, decoArea){
+function rightClickDecoArea(e, selectedJson){
   document.querySelectorAll(".context-menu").forEach((contextMenuInstance) => {
     contextMenuInstance.remove();
   });
@@ -7,14 +7,25 @@ function rightClickDecoArea(e, decoArea){
   console.log("righty roo")
   // if the right clicked object is an element
   if(e.target.dataset['personalizedobjectid']!=undefined){
+    console.log("got an item")
+    // debugger
     var rightClickedObject = e.target
     var contextMenu = document.getElementById("item-context-menu");
+
+    contextMenu.addEventListener("click", function(e) {
+      editElement(e, rightClickedObject, selectedJson, rightClickEvent)
+    })
   }
   else {
-    var rightClickedObject = e.currentTarget
+    console.log("got a deco")
+    objectSelectedBool = false
+    var rightClickedObject = e.currentTarget.parentElement.parentElement
     var contextMenu = document.getElementById("deco-context-menu");
+
+    contextMenu.addEventListener("click", function(e) {
+      addElement(e, rightClickedObject, selectedJson, rightClickEvent)
+    })
   }
-  // debugger
   event.preventDefault();
   var { offsetX: mouseX, offsetY: mouseY } = event;
 
@@ -23,36 +34,68 @@ function rightClickDecoArea(e, decoArea){
   contextMenu.style.zIndex = 1000
 
 
-  // console.log('imma remove')
-  // contextMenu.removeEventListener("click", function(e) {
-  //   addElement(e, rightClickedObject, decoArea, rightClickEvent)
-  // })
-  // console.log('imma add')
-  // console.log(getEventListeners(contextMenu))
+  makeContextMenuVisible(contextMenu)
+}
 
 
-  contextMenu.addEventListener("click", function(e) {
-    addElement(e, rightClickedObject, decoArea, rightClickEvent)
-
-  })
+function editElement(e, rightClickedObject, personalizedObject, rightClickEvent){
   // debugger
-  // for (var i = 0; i < contextMenu.childNodes.length; i++) {
-  //   contextMenu.childNodes[i].addEventListener("click", function(e) {
-  //     addElement(e, rightClickedObject, decoArea, rightClickEvent)
-  //   })
-  //   console.log("event added")
-  // }
+  if(e.target.getAttribute('id') == 'editObjectButton'){
+    presentObjectEditor(rightClickEvent, personalizedObject, rightClickedObject)
+  }
+  else if(e.target.getAttribute('id') == 'removeObjectButton'){
+    removeObject(personalizedObject, rightClickedObject)
+  }
+}
 
+function presentObjectEditor(e, personalizedObject, rightClickedObject){
+  var contextMenu = document.getElementById("edit-item-context-menu");
+  var { offsetX: mouseX, offsetY: mouseY } = e;
 
+  contextMenu.style.top = `${mouseY}px`;
+  contextMenu.style.left = `${mouseX+40}px`;
+  contextMenu.style.zIndex = 1000
+
+  makeContextMenuVisible(contextMenu)
+  var parentEvent = e
+  contextMenu.addEventListener("click", function(e) {
+    showFontEditor(e, personalizedObject, rightClickedObject, parentEvent)
+  })
+}
+
+function showFontEditor(e, personalizedObject, rightClickedObject, parentEvent){
+  console.log("yayy")
+  var contextMenu = document.getElementById("fontedit-context-menu");
+  var { offsetX: mouseX, offsetY: mouseY } = parentEvent;
+
+  contextMenu.style.top = `${mouseY}px`;
+  contextMenu.style.left = `${mouseX+40}px`;
+  contextMenu.style.zIndex = 1000
+// debugger
+  makeContextMenuVisible(contextMenu)
+  // debugger
+}
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!_______________________
+
+function makeContextMenuVisible(contextMenu){
+  document.querySelectorAll(".context-menu").forEach((contextMenuInstance) => {
+    contextMenuInstance.classList.remove("visible")
+  });
   contextMenu.classList.add("visible")
+}
+
+function removeObject(personalizedObject, rightClickedObject){
+  delete(personalizedObject)
+  rightClickedObject.remove()
 
 }
 
 function addElement(e, rightClickedObject, decoArea, rightClickEvent){
+  console.log("add element")
   if(e.target.getAttribute('id') == 'addTextButton'){
     addText(e, rightClickedObject, decoArea, rightClickEvent)
   }
-  if(e.target.getAttribute('id') == 'addImageButton'){
+  else if(e.target.getAttribute('id') == 'addImageButton'){
     addImage(e, rightClickedObject, decoArea, rightClickEvent)
   }
 }
@@ -110,6 +153,9 @@ function addImage(e, rightClickedObject, decoArea, rightClickEvent){
           }
       }
   }
-  decoArea.Template.PersonalizedObjects.push(newImageObject)
-  createPersonalizedObjects(rightClickedObject.querySelector('g'), newImageObject.PersonalizedObject)
+  if (imageURL != null){
+    decoArea.Template.PersonalizedObjects.push(newImageObject)
+    createPersonalizedObjects(rightClickedObject.querySelector('g'), newImageObject.PersonalizedObject)
+  }
+
 }

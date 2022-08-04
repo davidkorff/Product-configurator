@@ -45,17 +45,15 @@ function addContextMenus(parentElement){
   })
   addItemContextMenu(parentElement)
   addDecoContextMenu(parentElement)
+  addEditItemContextMenu(parentElement)
 }
 function addItemContextMenu(parentElement){
   var contextMenu = createPageElement('div',"item-context-menu","",[],["context-menu"],parentElement)
-  var option1 = createPageElement('div',"","",[{"href":"#"}],["item"], contextMenu)
-  option1.innerHTML = "option4"
+  var option1 = createPageElement('div',"editObjectButton","",[{"href":"#"}],["item"], contextMenu)
+  option1.innerHTML = "Edit Object"
 
-  var option2 = createPageElement('div',"","",[{"href":"#"}],["item"], contextMenu)
-  option2.innerHTML = "option5"
-
-  var option3 = createPageElement('div',"","",[{"href":"#"}],["item"], contextMenu)
-  option3.innerHTML = "option6"
+  var option2 = createPageElement('div',"removeObjectButton","",[{"href":"#"}],["item"], contextMenu)
+  option2.innerHTML = "Remove Object"
 
 }
 
@@ -70,7 +68,32 @@ function addDecoContextMenu(parentElement){
 
 }
 
+function addEditItemContextMenu(parentElement){
+  var contextMenu = createPageElement('div',"edit-item-context-menu","",[],["context-menu", "object-editor"],parentElement)
+  var option1 = createPageElement('div',"editFont","",[{"href":"#"}],["item"], contextMenu)
+  option1.innerHTML = "Edit Font"
 
+
+  var option2 = createPageElement('div',"editSize","",[{"href":"#"}],["item"], contextMenu)
+  option2.innerHTML = "Edit Size"
+
+  var option2 = createPageElement('div',"editColor","",[{"href":"#"}],["item"], contextMenu)
+  option2.innerHTML = "Edit Color"
+
+  createFontEditorTool(parentElement)
+}
+
+function createFontEditorTool(parentElement){
+  var contextMenu = createPageElement('div',"fontedit-context-menu","",[{"style":"background: #c5c5c5;"}],["context-menu"],parentElement)
+
+  var textSection = createPageElement('form',"","",[],[],contextMenu)
+  var textDiv = createPageElement('div',"","",[],["form-group"],textSection)
+  var textLabel = createPageElement('label',"","",[{"for":"personalizationFeild"}],[],textDiv)
+  textLabel.innerHTML = "Personaliztion Field"
+
+  var textInput = createPageElement('input',"personalizationFieldInput","",[{"aria-describedby":"customText"},{"placeholder":"Personalize Here"}],["form-control"],textDiv)
+  //even listern on personalize here
+}
 
 function addModalButton(){
 
