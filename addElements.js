@@ -71,7 +71,7 @@ function addText(e, rightClickedObject, decoArea, rightClickEvent){
               "Movable": true,
               "KeepInArea": false
           },
-          "Text": "DAvid",
+          "Text": "Text",
           "Font": "Arial",
           "FontSize":10,
           "IMG": "",
@@ -88,6 +88,7 @@ function addText(e, rightClickedObject, decoArea, rightClickEvent){
 }
 
 function addImage(e, rightClickedObject, decoArea, rightClickEvent){
+  var  imageURL = prompt("please enter an image URL")
   // debugger
   var newImageObject = {
       "PersonalizedObject": {
@@ -100,7 +101,7 @@ function addImage(e, rightClickedObject, decoArea, rightClickEvent){
           "Text": "",
           "Font": "",
           "FontSize":10,
-          "IMG": "https://printify.com/wp-content/uploads/2021/03/swagrabbit_logo.png",
+          "IMG": imageURL,
           "ObjectSpecs": {
               "ObjectHeight": 50,
               "ObjectWidth": 60,
