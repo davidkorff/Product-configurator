@@ -78,7 +78,7 @@ function createCanvas(configParentdiv, subsection){
 
 function createDecoArea(svgElementParent, decoArea){
   // create a decoarea svg
-  var decoAreaSVG = createPageElement("svg",`DecoAreaID${decoArea.DecoAreaID}`,"",[{"height":decoArea.Template.Dimensions.DecoAreaHeight},{"width": decoArea.Template.Dimensions.DecoAreaWidth},{"x":decoArea.Template.Dimensions.DecoAreaXOffset},{"y":decoArea.Template.Dimensions.DecoAreaYOffset},{"data-decoareaid":decoArea.DecoAreaID},{"style":"stroke:black;stroke-width:1;fill-opacity:0.0"}],["d-none"],svgElementParent)
+  var decoAreaSVG = createPageElement("svg",`DecoAreaID${decoArea.DecoAreaID}`,"",[{"height":decoArea.Template.Dimensions.DecoAreaHeight},{"width": decoArea.Template.Dimensions.DecoAreaWidth},{"x":decoArea.Template.Dimensions.DecoAreaXOffset},{"y":decoArea.Template.Dimensions.DecoAreaYOffset},{"data-decoareaid":decoArea.DecoAreaID},{"style":"stroke:black;stroke-width:1;fill-opacity:0.0"}],[],svgElementParent)
   //activate the below
   decoAreaSVG.addEventListener("mousemove", mouseState)
   // decoAreaSVG.addEventListener("contextmenu", function(e) {
@@ -167,6 +167,8 @@ function createPersonalizedObjects(decoAreaGroup, personalizedObject){
 
 function doubleClickObject(personalizedObject, e){
   console.log("doubley")
+
+  setTextFieldEditor(e, personalizedObject, e.target, e)
 }
 
 function mouseState1(personalizedObject, e){

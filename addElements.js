@@ -2,7 +2,7 @@ function rightClickDecoArea(e, selectedJson){
   document.querySelectorAll(".context-menu").forEach((contextMenuInstance) => {
     contextMenuInstance.remove();
   });
-  addContextMenus(document.querySelector(".modal-dialog"))
+  addContextMenus(document.querySelector("#spokeConfigurator"))
   var rightClickEvent = e
   console.log("righty roo")
   // if the right clicked object is an element
@@ -48,7 +48,7 @@ function editElement(e, rightClickedObject, personalizedObject, rightClickEvent)
   }
 }
 
-function presentObjectEditor(e, personalizedObject, rightClickedObject){
+function presentObjectEditor(e, personalizedObject, clickedSVGObject){
   var contextMenu = document.getElementById("edit-item-context-menu");
   var { offsetX: mouseX, offsetY: mouseY } = e;
 
@@ -59,23 +59,58 @@ function presentObjectEditor(e, personalizedObject, rightClickedObject){
   makeContextMenuVisible(contextMenu)
   var parentEvent = e
   contextMenu.addEventListener("click", function(e) {
-    showFontEditor(e, personalizedObject, rightClickedObject, parentEvent)
+    setTextFieldEditor(e, personalizedObject, clickedSVGObject, parentEvent)
+    // showFontEditor(e, personalizedObject, rightClickedObject, parentEvent)
   })
 }
 
-function showFontEditor(e, personalizedObject, rightClickedObject, parentEvent){
+function setTextFieldEditor(e, personalizedObject, clickedSVGObject, parentEvent){
   console.log("yayy")
   var contextMenu = document.getElementById("fontedit-context-menu");
   var { offsetX: mouseX, offsetY: mouseY } = parentEvent;
 
-  contextMenu.style.top = `${mouseY}px`;
-  contextMenu.style.left = `${mouseX+40}px`;
+  // contextMenu.style.top = `${mouseY}px`;
+  // contextMenu.style.left = `${mouseX-100}px`;
+  contextMenu.style.top = `${1}px`;
+  contextMenu.style.left = `${1}px`
   contextMenu.style.zIndex = 1000
-// debugger
+
   makeContextMenuVisible(contextMenu)
-  // debugger
+
+  showTextEditor(e, personalizedObject, clickedSVGObject, parentEvent, contextMenu)
+  showFontEditor(e, personalizedObject, clickedSVGObject, parentEvent, contextMenu)
 }
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!_______________________
+
+
+function showFontEditor(e, personalizedObject, rightClickedObject, parentEvent, contextMenu){
+  var fontOptionSection = contextMenu.querySelector('#fontOptions')
+  var fontSelectorButton = contextMenu.querySelector('#fontDropdownButton')
+  fontSelectorButton.innerHTML = personalizedObject.Font
+
+  var fontOptions = personalizedObject.FontOptions
+
+  for (var i = 0; i < fontOptions.length; i++) {
+    var font = createPageElement('a','','',[{"href":"#"}],['dropdown-item'],fontOptionSection)
+    font.innerHTML = fontOptions[i]
+  }
+  $('#fontOptions').on('show.bs.dropdown', function () {
+    // do something…
+  })
+}
+
+function showTextEditor(e, personalizedObject, clickedSVGObject, parentEvent, contextMenu){
+  // debugger
+  contextMenu.querySelector('#personalizationFieldInput').value = e.target.innerHTML
+
+  contextMenu.addEventListener("keyup", function(e) {
+      changeTextField(e, personalizedObject, clickedSVGObject)
+  })
+}
+
+function changeTextField(e, personalizedObject, clickedSVGObject){
+  clickedSVGObject.innerHTML = e.target.value
+  personalizedObject.Text = e.target.value
+}
 
 function makeContextMenuVisible(contextMenu){
   document.querySelectorAll(".context-menu").forEach((contextMenuInstance) => {

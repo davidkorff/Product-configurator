@@ -6,15 +6,15 @@ function addSpokeCustomElements(){
 }
 
 function addModalElements(){
-  var modalFade = createPageElement("div","exampleModal","configModal",[{"tabindex":"-1"},{"role":"dialog"},{"aria-labelledby":"exampleModalLabel"},{"aria-hidden":"true"}], ["modal","fade"], document.body)
+  var modalFade = createPageElement("div","spokeConfigurator","",[{"tabindex":"-1"},{"role":"dialog"},{"aria-labelledby":"spokeConfiguratorLabel"},{"aria-hidden":"true"}], ["modal"], document.body)
 
-  var modalDialog = createPageElement("div", "","",[{"role":"document"}],["modal-dialog"],modalFade)
+  // var modalDialog = createPageElement("div", "","",[{"role":"document"}],["modal-dialog"],modalFade)
 
   // var modalContent = createPageElement("div", "","",[],["modal-content"],modalDialog)
 
   // var modalHeader = createPageElement("div", "","",[],["modal-header"],modalContent)
   //
-  // var modalTitle = createPageElement("h5", "exampleModalLabel","",[],["modal-title"],modalHeader)
+  // var modalTitle = createPageElement("h5", "#SpokeConfiguratorLabel","",[],["modal-title"],modalHeader)
   // modalTitle.innerHTML = "title"
   //
   // var modalCloseButton = createPageElement("button","","",[{"data-dismiss":"modal"},{"aria-label":"Close"}],["close"],modalHeader)
@@ -22,8 +22,8 @@ function addModalElements(){
   // var modalCloseButtonSpan = createPageElement("span","","",[{"aria-hidden":"true"}],[],modalCloseButton)
   //
   // var modalBody = createPageElement("div", "","",[],["modal-body"],modalContent)
-  addContextMenus(modalDialog)
-  createConfigurator(modalDialog,jsonObject1)
+  addContextMenus(modalFade)
+  createConfigurator(modalFade,jsonObject1)
 
   // var modalFooter = createPageElement("div", "","",[],["modal-footer"],modalContent)
 
@@ -35,12 +35,18 @@ function addModalElements(){
 }
 function addContextMenus(parentElement){
   parentElement.addEventListener("click", function(e) {
+    if(document.querySelector("#spokeConfigurator") == e.target){
+      // debugger
+      // document.querySelector("#spokeConfigurator").classList.remove("fade")
+      // $('#spokeConfigurator').modal('hide')
+    }
     if (e.target.offsetParent == undefined) {
       document.querySelectorAll(".context-menu").forEach((contextMenu) => {
         contextMenu.remove();
       });
       addItemContextMenu(parentElement)
       addDecoContextMenu(parentElement)
+      addEditItemContextMenu(parentElement)
     }
   })
   addItemContextMenu(parentElement)
@@ -93,11 +99,20 @@ function createFontEditorTool(parentElement){
 
   var textInput = createPageElement('input',"personalizationFieldInput","",[{"aria-describedby":"customText"},{"placeholder":"Personalize Here"}],["form-control"],textDiv)
   //even listern on personalize here
+  //maybe double click goes straight into editing.
+
+  var fontDropdown = createPageElement('div','fontDropdown','fontDropdown',[],["dropdown"],contextMenu)
+  var fontDropdownButton = createPageElement('button','fontDropdownButton','fontDropdownButton',[{"data-toggle":"dropdown"},{"aria-haspopup":"true"},{"aria-expanded":"false"}],["btn", "btn-secondary", "dropdown-toggle"],fontDropdown)
+  fontDropdownButton.innerHTML = "Select Font"
+
+  var fontOptions = createPageElement('div','fontOptions','fontOptions',[{"aria-labelledby":"fontDropdownButton"}],["dropdown-menu"],fontDropdown)
 }
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!_______________________
+
 
 function addModalButton(){
 
-  var modalButton = createPageElement("button", "configModalButton", "configModal",[{"data-toggle":"modal"},{"data-target":"#exampleModal"}],["btn", "btn-primary"],document.querySelector("#customizerButton"))
+  var modalButton = createPageElement("button", "configModalButton", "configModal",[{"data-toggle":"modal"},{"data-target":"#spokeConfigurator"}],["btn", "btn-primary"],document.querySelector("#customizerButton"))
   modalButton.innerHTML = "Open Configurator"
 
 
